@@ -1,0 +1,27 @@
+ext {
+    android = [
+            compileSdkVersion : 23,
+            buildToolsVersion : "23.0.2",
+            applicationId : "com.wkw.hot",
+            minSdkVersion : 14,
+            targetSdkVersion : 22,
+            versionCode : 1,
+            versionName : "1.0",
+            javaVersion : JavaVersion.VERSION_1_8
+    ]
+
+    dependencies = [
+            "appcompat-v7"        : "com.android.support:appcompat-v7:23.2.0",
+            "design"              : "com.android.support:design:23.2.0",
+            "recyclerview-v7"     : "com.android.support:recyclerview-v7:23.2.0",
+            "retrofit"            : "com.squareup.retrofit2:retrofit:2.0.2",
+            "logging-interceptor" : "com.squareup.okhttp3:logging-interceptor:3.3.0",
+            "rxandroid"           : "io.reactivex:rxandroid:1.2.0",
+            "converter-gson"      : "com.squareup.retrofit2:converter-gson:2.0.2",
+            "adapter-rxjava"      : "com.squareup.retrofit2:adapter-rxjava:2.0.2",
+            "gson"                : "com.google.code.gson:gson:2.6.2",
+            "glide"               : "com.github.bumptech.glide:glide:3.7.0",
+            "butterknife"         : "com.jakewharton:butterknife:7.0.1",
+
+    ]
+}
