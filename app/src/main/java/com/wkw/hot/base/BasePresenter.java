@@ -1,9 +1,13 @@
 package com.wkw.hot.base;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.wkw.hot.api.HotApi;
 import com.wkw.hot.api.HotFactory;
+import com.wkw.hot.entity.exception.ServerException;
+import com.wkw.hot.utils.NetWorkUtil;
+import com.wkw.hot.utils.ToastUtil;
 
 import rx.Subscription;
 
@@ -22,7 +26,18 @@ public abstract class BasePresenter<T extends IView> implements IPresenter {
         this.mView = view;
     }
 
-    protected void unsubscribe() {
+    protected void handleError(Throwable throwable) {
+        if (!NetWorkUtil.isNetConnected(mActivity)) {
+            ToastUtil.showShort(mActivity, "当前网络不可用");
+        } else if (throwable instanceof ServerException){
+            ToastUtil.showShort(mActivity, throwable.getMessage());
+        } else {
+            ToastUtil.showShort(mActivity, throwable.getMessage());
+            Log.d("throwable",throwable.getMessage());
+        }
+    }
+
+    protected void unSubscribe() {
         if (mSubscription != null && !mSubscription.isUnsubscribed())
             mSubscription.unsubscribe();
     }
@@ -30,6 +45,6 @@ public abstract class BasePresenter<T extends IView> implements IPresenter {
     @Override
     public void detachView() {
         this.mView = null;
-        unsubscribe();
+        unSubscribe();
     }
 }

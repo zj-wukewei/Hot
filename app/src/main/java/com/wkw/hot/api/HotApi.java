@@ -1,9 +1,9 @@
 package com.wkw.hot.api;
 
-import android.database.Observable;
-
 import com.wkw.hot.entity.ApiResponse;
 import com.wkw.hot.entity.Popular;
+
+import java.util.List;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -14,6 +14,6 @@ import retrofit2.http.Query;
 public interface HotApi {
 
     @GET("txapi/weixin/wxhot")
-    Observable<ApiResponse<Popular>> getPopular(@Query("page") String page, @Query("word") String word);
+    rx.Observable<ApiResponse<List<Popular>>> getPopular(@Query("page") int page, @Query("num") int num, @Query("word") String word);
 
 }

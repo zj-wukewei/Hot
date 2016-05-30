@@ -8,7 +8,7 @@ public class ApiResponse<T> {
 
     private int code;
     private String msg;
-    private T newsList;
+    private T newslist;
 
     public int getCode() {
         return code;
@@ -27,11 +27,11 @@ public class ApiResponse<T> {
     }
 
     public T getNewsList() {
-        return newsList;
+        return newslist;
     }
 
     public void setNewsList(T newsList) {
-        this.newsList = newsList;
+        this.newslist = newsList;
     }
 
     public boolean isSuccess() {

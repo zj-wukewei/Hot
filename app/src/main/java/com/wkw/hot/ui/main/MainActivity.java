@@ -1,9 +1,7 @@
 package com.wkw.hot.ui.main;
 
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -14,10 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.wkw.hot.R;
+import com.wkw.hot.adapter.FragmentAdapter;
 import com.wkw.hot.base.BaseActivity;
+import com.wkw.hot.ui.item.ItemFragment;
+
+import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity<MainPresenter>
         implements NavigationView.OnNavigationItemSelectedListener, MainContract.View {
@@ -29,7 +30,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     DrawerLayout drawer;
 
     @Bind(R.id.tabs)
-    TabLayout tabs;
+    TabLayout tabLayout;
 
     @Bind(R.id.viewpager)
     ViewPager viewpager;
@@ -40,9 +41,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Bind(R.id.nav_view)
     NavigationView navView;
 
+    protected FragmentAdapter mAdapter;
+
     @Override
     protected MainPresenter getPresenter() {
-        return new MainPresenter(mContext, this);
+       return new MainPresenter(mContext, this);
     }
 
     @Override
@@ -57,6 +60,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        mPresenter.getTabs();
         navView.setNavigationItemSelectedListener(this);
     }
 
@@ -92,22 +96,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -115,9 +103,13 @@ public class MainActivity extends BaseActivity<MainPresenter>
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public void addTabs(List<String> tabs) {
+        mAdapter = new FragmentAdapter(getSupportFragmentManager());
+        for (String tab : tabs) {
+            ItemFragment fragment = ItemFragment.newInstance(tab);
+            mAdapter.addFragment(fragment, tab);
+        }
+        viewpager.setAdapter(mAdapter);
+        tabLayout.setupWithViewPager(viewpager);
     }
 }

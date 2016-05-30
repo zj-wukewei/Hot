@@ -1,6 +1,7 @@
 package com.wkw.hot.utils;
 
 import com.wkw.hot.entity.ApiResponse;
+import com.wkw.hot.entity.exception.ServerException;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -19,7 +20,7 @@ public class RxResultHelper {
                     //表示成功
                     return createData(tApiResponse.getNewsList());
                 } else {
-                    return Observable.error(new Throwable(tApiResponse.getMsg()));
+                    return Observable.error(new ServerException(tApiResponse.getMsg()));
                 }
             }
         });

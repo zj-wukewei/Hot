@@ -11,10 +11,11 @@ import java.util.List;
 public interface MainContract {
 
     interface View extends IView {
+        void addTabs(List<String> tabs);
 
     }
 
     interface Presenter extends IPresenter {
-        void getTabs(List<String> tabs);
+        void getTabs();
     }
 }

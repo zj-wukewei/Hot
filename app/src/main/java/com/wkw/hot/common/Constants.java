@@ -7,4 +7,6 @@ public class Constants {
     public static final String Base_Url = "http://apis.baidu.com/";
     public static final String Api_Key = "ff27ef67506b2c0738a3252b01f8d564";
     public static final int HTTP_CONNECT_TIMEOUT = 8000;
+    public static final int PAGE_SIZE = 20;
+
 }
