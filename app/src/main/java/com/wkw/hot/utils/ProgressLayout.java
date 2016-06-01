@@ -1,7 +1,6 @@
 package com.wkw.hot.utils;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,7 +80,7 @@ public class ProgressLayout extends RelativeLayout {
 
     public void showContent() {
         currentState = State.CONTENT;
-        this.hideNotDataView();
+        this.hideLoadingView();
         this.hideErrorView();
         this.hideNotDataView();
         this.setContentVisibility(true);

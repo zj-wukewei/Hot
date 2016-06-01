@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+
+    <ProgressBar
+        android:id="@+id/progress_view"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        style="?progressBarStyle"/>
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_marginLeft="4dp"
+        android:text="@string/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
