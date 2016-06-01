@@ -13,6 +13,7 @@ ext {
     dependencies = [
             "appcompat-v7"        : "com.android.support:appcompat-v7:23.2.0",
             "design"              : "com.android.support:design:23.2.0",
+            "cardview"            : "com.android.support:cardview-v7:23.2.0",
             "recyclerview-v7"     : "com.android.support:recyclerview-v7:23.2.0",
             "retrofit"            : "com.squareup.retrofit2:retrofit:2.0.2",
             "logging-interceptor" : "com.squareup.okhttp3:logging-interceptor:3.3.0",

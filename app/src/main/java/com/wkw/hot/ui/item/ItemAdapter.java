@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.wkw.hot.R;
 import com.wkw.hot.base.BaseLoadMoreAdapter;
 import com.wkw.hot.entity.Popular;
@@ -20,10 +22,15 @@ import butterknife.ButterKnife;
 public class ItemAdapter extends BaseLoadMoreAdapter<Popular, ItemAdapter.ViewHolder> {
 
 
+
     @Override
     public void onBindItemViewHolder(ViewHolder holder,Popular data, int position) {
+        Glide.with(holder.imgItem.getContext())
+                .load(data.getPicUrl())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.imgItem);
         holder.tvTitle.setText(data.getTitle());
-        holder.tvDate.setText(data.getCtime());
+        holder.tvDate.setText("来自:"+data.getDescription());
     }
 
     @Override
