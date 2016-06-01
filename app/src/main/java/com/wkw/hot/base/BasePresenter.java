@@ -6,6 +6,7 @@ import android.util.Log;
 import com.wkw.hot.api.HotApi;
 import com.wkw.hot.api.HotFactory;
 import com.wkw.hot.entity.exception.ServerException;
+import com.wkw.hot.utils.Logger;
 import com.wkw.hot.utils.NetWorkUtil;
 import com.wkw.hot.utils.ToastUtil;
 
@@ -31,9 +32,10 @@ public abstract class BasePresenter<T extends IView> implements IPresenter {
             ToastUtil.showShort(mActivity, "当前网络不可用");
         } else if (throwable instanceof ServerException){
             ToastUtil.showShort(mActivity, throwable.getMessage());
+            Logger.e(throwable.getMessage());
         } else {
-            ToastUtil.showShort(mActivity, throwable.getMessage());
-            Log.d("throwable",throwable.getMessage());
+            ToastUtil.showShort(mActivity,"连接服务器失败,请稍后再试..");
+            Logger.e(throwable.getMessage());
         }
     }
 

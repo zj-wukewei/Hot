@@ -18,6 +18,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
     protected void replacePn() {
         pn = 1;
     }
+
     public ItemPresenter(Activity activity, ItemContract.View view) {
         super(activity, view);
     }
@@ -28,7 +29,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
                .compose(SchedulersCompat.applyIoSchedulers())
                .compose(RxResultHelper.handleResult())
                .subscribe(populars -> {
-                   Log.d("aaa",populars.get(0).toString());
+
                }, throwable -> {
                    handleError(throwable);
                });

@@ -2,6 +2,7 @@ package com.wkw.hot.utils;
 
 import com.wkw.hot.entity.ApiResponse;
 import com.wkw.hot.entity.exception.ServerException;
+import com.wkw.hot.ui.App;
 
 import rx.Observable;
 import rx.Subscriber;
