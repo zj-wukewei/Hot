@@ -9,6 +9,8 @@ import com.wkw.hot.entity.exception.ErrorHanding;
 import com.wkw.hot.utils.RxResultHelper;
 import com.wkw.hot.utils.SchedulersCompat;
 
+import rx.Subscription;
+
 /**
  * Created by wukewei on 16/5/30.
  */
@@ -31,7 +33,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
     @Override
     public void getListData(String type) {
             if (isRefresh()) mView.showLoading();
-            mSubscription = mHotApi.getPopular(this.pn, Constants.PAGE_SIZE, type)
+            Subscription subscription = mHotApi.getPopular(this.pn, Constants.PAGE_SIZE, type)
                     .compose(SchedulersCompat.applyIoSchedulers())
                     .compose(RxResultHelper.handleResult())
                     .subscribe(populars -> {
@@ -46,6 +48,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
                         mView.showError(ErrorHanding.handleError(throwable));
                         handleError(throwable);
                     });
+        addSubscrebe(subscription);
 
     }
 }

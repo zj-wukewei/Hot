@@ -11,6 +11,7 @@ import com.wkw.hot.R;
 import com.wkw.hot.base.BaseFragment;
 import com.wkw.hot.base.BaseOnScrollListener;
 import com.wkw.hot.entity.Popular;
+import com.wkw.hot.ui.web.WebActivity;
 import com.wkw.hot.utils.Logger;
 import com.wkw.hot.utils.ProgressLayout;
 
@@ -60,6 +61,9 @@ public class ItemFragment extends BaseFragment<ItemPresenter> implements ItemCon
             mPresenter.getListData(type);
         };
         mAdapter = new ItemAdapter();
+        mAdapter.setOnItemCilckListener((url, title) -> {
+            WebActivity.startActivity(mContext, url, title);
+        });
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerView.setAdapter(mAdapter);

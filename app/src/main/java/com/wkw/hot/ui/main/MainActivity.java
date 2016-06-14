@@ -35,8 +35,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
     @Bind(R.id.viewpager)
     ViewPager viewpager;
 
-    @Bind(R.id.fab)
-    FloatingActionButton fab;
 
     @Bind(R.id.nav_view)
     NavigationView navView;

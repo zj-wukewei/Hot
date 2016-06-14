@@ -1,5 +1,6 @@
 package com.wkw.hot.ui.item;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,11 @@ import butterknife.ButterKnife;
 public class ItemAdapter extends BaseLoadMoreAdapter<Popular, ItemAdapter.ViewHolder> {
 
 
+    private OnItemClickListener listener;
+
+    public void setOnItemCilckListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public void onBindItemViewHolder(ViewHolder holder,Popular data, int position) {
@@ -31,6 +37,11 @@ public class ItemAdapter extends BaseLoadMoreAdapter<Popular, ItemAdapter.ViewHo
                 .into(holder.imgItem);
         holder.tvTitle.setText(data.getTitle());
         holder.tvDate.setText("来自:"+data.getDescription());
+        holder.cardView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(data.getUrl(), data.getTitle());
+            }
+        });
     }
 
     @Override
@@ -47,9 +58,15 @@ public class ItemAdapter extends BaseLoadMoreAdapter<Popular, ItemAdapter.ViewHo
         TextView tvTitle;
         @Bind(R.id.tv_date)
         TextView tvDate;
+        @Bind(R.id.card_view)
+        CardView cardView;
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(String url, String title);
     }
 }
