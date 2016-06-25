@@ -14,17 +14,24 @@ import rx.functions.Func1;
 public class RxResultHelper {
 
     public static <T> Observable.Transformer<ApiResponse<T>, T> handleResult() {
-        return apiResponseObservable -> apiResponseObservable.flatMap(new Func1<ApiResponse<T>, Observable<T>>() {
+        return new Observable.Transformer<ApiResponse<T>, T>() {
             @Override
-            public Observable<T> call(ApiResponse<T> tApiResponse) {
-                if (tApiResponse.isSuccess()) {
-                    //表示成功
-                    return createData(tApiResponse.getNewsList());
-                } else {
-                    return Observable.error(new ServerException(tApiResponse.getMsg()));
-                }
+            public Observable<T> call(Observable<ApiResponse<T>> apiResponseObservable) {
+                return apiResponseObservable.flatMap(
+                        new Func1<ApiResponse<T>, Observable<T>>() {
+                            @Override
+                            public Observable<T> call(ApiResponse<T> tApiResponse) {
+                                if (tApiResponse.isSuccess()) {
+                                    return createData(tApiResponse.getNewsList());
+                                } else {
+                                    return Observable.error(new ServerException(tApiResponse.getMsg()));
+                                }
+
+                            }
+                        }
+                );
             }
-        });
+        };
     }
 
 

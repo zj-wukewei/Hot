@@ -13,7 +13,6 @@ public class SchedulersCompat {
     private final static Observable.Transformer ioTransformer = o -> ((Observable)o).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread());
 
-
     public static <T> Observable.Transformer<T, T> applyIoSchedulers() {
         return (Observable.Transformer<T, T>) ioTransformer;
     }
