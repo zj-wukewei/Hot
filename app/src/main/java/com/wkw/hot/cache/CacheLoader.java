@@ -81,6 +81,20 @@ public class CacheLoader {
                 });
     }
 
+    public  <T> void upNewData(final String key, T t) {
+        Observable.just(t)
+                .doOnNext(new Action1<T>() {
+                    @Override
+                    public void call(T t) {
+                        if (null != t) {
+                            Log.d("更新数据","更新数据");
+                            mDiskCache.put(key, t);
+                            mMemoryCache.put(key, t);
+                        }
+                    }
+                }).subscribe();
+    }
+
     private <T> Observable<T> network(final String key, Class<T> cls
             , NetworkCache<T> networkCache) {
 

@@ -78,7 +78,7 @@ public class ItemFragment extends BaseFragment<ItemPresenter> implements ItemCon
                 }
             }
         });
-        mPresenter.getListData(type);
+        mPresenter.getCacheData(type);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             mPresenter.replacePn();
             mPresenter.getListData(type);
@@ -103,6 +103,7 @@ public class ItemFragment extends BaseFragment<ItemPresenter> implements ItemCon
 
     @Override
     public void showLoading() {
+        if (!progressLayout.isContent())
         progressLayout.showLoading();
     }
 

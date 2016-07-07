@@ -17,5 +17,6 @@ public class ItemContract {
     }
     interface Presenter extends IPresenter {
         void getListData(String type);
+        void getCacheData(String type);
     }
 }

@@ -1,5 +1,7 @@
 package com.wkw.hot.utils;
 
+import android.util.Log;
+
 import com.wkw.hot.entity.ApiResponse;
 import com.wkw.hot.entity.exception.ServerException;
 import com.wkw.hot.ui.App;
