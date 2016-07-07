@@ -71,7 +71,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
                     handleError(throwable);
                 });
 
-        addSubscrebe(subscription);
+        addSubscribe(subscription);
 
     }
 }

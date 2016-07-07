@@ -12,6 +12,7 @@ public class ErrorHanding {
     }
 
     public static String handleError(Throwable throwable) {
+        throwable.printStackTrace();
         String message;
         if (!NetWorkUtil.isNetConnected(App.getAppContext())) {
             message = "无网络连接";

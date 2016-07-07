@@ -21,12 +21,13 @@ public class RxResultHelper {
                         new Func1<ApiResponse<T>, Observable<T>>() {
                             @Override
                             public Observable<T> call(ApiResponse<T> tApiResponse) {
-                                if (tApiResponse.isSuccess()) {
+                                if (tApiResponse == null) {
+                                    return Observable.empty();
+                                } else if (tApiResponse.isSuccess()) {
                                     return createData(tApiResponse.getNewsList());
                                 } else {
                                     return Observable.error(new ServerException(tApiResponse.getMsg()));
                                 }
-
                             }
                         }
                 );

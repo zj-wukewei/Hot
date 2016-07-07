@@ -39,7 +39,7 @@ public abstract class BasePresenter<T extends IView> implements IPresenter {
         }
     }
 
-    protected void addSubscrebe(Subscription subscription) {
+    protected void addSubscribe(Subscription subscription) {
         if (mCompositeSubscription == null) {
             mCompositeSubscription = new CompositeSubscription();
         }
