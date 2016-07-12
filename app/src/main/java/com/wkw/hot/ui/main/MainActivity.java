@@ -1,6 +1,5 @@
 package com.wkw.hot.ui.main;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;

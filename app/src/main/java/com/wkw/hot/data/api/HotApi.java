@@ -1,4 +1,4 @@
-package com.wkw.hot.api;
+package com.wkw.hot.data.api;
 
 import com.wkw.hot.entity.ApiResponse;
 import com.wkw.hot.entity.Popular;

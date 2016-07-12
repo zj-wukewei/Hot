@@ -1,4 +1,4 @@
-package com.wkw.hot.api;
+package com.wkw.hot.data.api;
 
 /**
  * Created by wukewei on 16/5/26.

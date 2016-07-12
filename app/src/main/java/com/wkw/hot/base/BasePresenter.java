@@ -1,14 +1,10 @@
 package com.wkw.hot.base;
 
 import android.app.Activity;
-import android.util.Log;
 
-import com.wkw.hot.api.HotApi;
-import com.wkw.hot.api.HotFactory;
+import com.wkw.hot.data.api.HotApi;
+import com.wkw.hot.data.api.HotFactory;
 import com.wkw.hot.entity.exception.ErrorHanding;
-import com.wkw.hot.entity.exception.ServerException;
-import com.wkw.hot.utils.Logger;
-import com.wkw.hot.utils.NetWorkUtil;
 import com.wkw.hot.utils.ToastUtil;
 
 import rx.Subscription;
@@ -22,7 +18,6 @@ public abstract class BasePresenter<T extends IView> implements IPresenter {
     protected Activity mActivity;
     protected T mView;
     protected CompositeSubscription mCompositeSubscription;
-    protected static final HotApi mHotApi = HotFactory.getHotApi();
 
     public BasePresenter(Activity activity, T view) {
         this.mActivity = activity;

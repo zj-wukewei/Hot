@@ -6,6 +6,7 @@ import com.wkw.hot.base.BasePresenter;
 import com.wkw.hot.cache.CacheLoader;
 import com.wkw.hot.cache.NetworkCache;
 import com.wkw.hot.common.Constants;
+import com.wkw.hot.data.DataManager;
 import com.wkw.hot.entity.ListPopular;
 import com.wkw.hot.entity.exception.ErrorHanding;
 import com.wkw.hot.utils.RxResultHelper;
@@ -30,8 +31,6 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
         return pn == 1;
     }
 
-    private NetworkCache<ListPopular> networkCache;
-
 
     public ItemPresenter(Activity activity, ItemContract.View view) {
         super(activity, view);
@@ -41,15 +40,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
     @Override
     public void getListData(String type) {
         mView.showLoading();
-        Subscription subscription = mHotApi.getPopular(ItemPresenter.this.pn, Constants.PAGE_SIZE, type)
-                .compose(SchedulersCompat.applyIoSchedulers())
-                .compose(RxResultHelper.handleResult())
-                .doOnNext(populars -> {
-                    if (isRefresh()) {
-                        ListPopular popular = new ListPopular(populars);
-                        CacheLoader.getInstance(mActivity).upNewData(type, popular);
-                    }
-                })
+        Subscription subscription = DataManager.getInstance().getPopular(pn, type)
                 .subscribe(populars -> {
                     mView.showContent();
                     if (isRefresh()) {
@@ -71,23 +62,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
     @Override
     public void getCacheData(String type) {
         mView.showLoading();
-
-        networkCache = new NetworkCache<ListPopular>() {
-            @Override
-            public Observable<ListPopular> get(String key, Class<ListPopular> cls) {
-                return mHotApi.getPopular(ItemPresenter.this.pn, Constants.PAGE_SIZE, type)
-                        .compose(SchedulersCompat.applyIoSchedulers())
-                        .compose(RxResultHelper.handleResult())
-                        .flatMap(populars -> {
-                            ListPopular popular = new ListPopular(populars);
-                            return Observable.just(popular);
-                        });
-            }
-        };
-
-        Subscription subscription  = CacheLoader.getInstance(mActivity)
-                .asDataObservable(key + type, ListPopular.class, networkCache)
-                .map(listPopular -> listPopular.data)
+        Subscription subscription  = DataManager.getInstance().getCachePopular(type)
                 .subscribe(populars -> {
                     mView.showContent();
                     mView.addLoadMoreData(populars);
