@@ -13,6 +13,9 @@ import android.view.MenuItem;
 import com.wkw.hot.R;
 import com.wkw.hot.adapter.FragmentAdapter;
 import com.wkw.hot.base.BaseActivity;
+import com.wkw.hot.reject.component.AppComponent;
+import com.wkw.hot.reject.component.DaggerActivityComponent;
+import com.wkw.hot.reject.module.ActivityModule;
 import com.wkw.hot.ui.item.ItemFragment;
 
 import java.util.List;
@@ -40,9 +43,16 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     protected FragmentAdapter mAdapter;
 
+
     @Override
-    protected MainPresenter getPresenter() {
-       return new MainPresenter(mContext, this);
+    protected void setupActivityComponent(AppComponent appComponent, ActivityModule activityModule) {
+
+
+        DaggerActivityComponent.builder()
+                .appComponent(appComponent)
+                .activityModule(activityModule)
+                .build()
+                .inject(this);
     }
 
     @Override

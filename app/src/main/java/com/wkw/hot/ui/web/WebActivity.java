@@ -2,6 +2,7 @@ package com.wkw.hot.ui.web;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,13 +15,16 @@ import android.widget.ProgressBar;
 import com.wkw.hot.R;
 import com.wkw.hot.base.BaseActivity;
 import com.wkw.hot.base.IPresenter;
+import com.wkw.hot.reject.component.AppComponent;
+import com.wkw.hot.reject.component.DaggerActivityComponent;
+import com.wkw.hot.reject.module.ActivityModule;
 
 import butterknife.Bind;
 
 /**
  * Created by wukewei on 16/6/2.
  */
-public class WebActivity extends BaseActivity {
+public class WebActivity extends BaseActivity<WebPresenter> implements WebContract.View {
 
 
     private static final String URL = "url";
@@ -42,10 +46,6 @@ public class WebActivity extends BaseActivity {
         context.startActivity(intent);
     }
 
-    @Override
-    protected IPresenter getPresenter() {
-        return null;
-    }
 
     @Override
     protected int getLayout() {
@@ -67,6 +67,7 @@ public class WebActivity extends BaseActivity {
         webView.setWebViewClient(new Client());
         webView.loadUrl(url);
     }
+
 
     @Override
     protected void onResume() {
@@ -94,6 +95,17 @@ public class WebActivity extends BaseActivity {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+
+
+    @Override
+    protected void setupActivityComponent(AppComponent appComponent, ActivityModule activityModule) {
+        DaggerActivityComponent.builder()
+                .appComponent(appComponent)
+                .activityModule(activityModule)
+                .build()
+                .inject(this);
     }
 
     @Override

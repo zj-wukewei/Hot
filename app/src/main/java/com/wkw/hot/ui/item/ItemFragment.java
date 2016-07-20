@@ -11,6 +11,9 @@ import com.wkw.hot.R;
 import com.wkw.hot.base.BaseFragment;
 import com.wkw.hot.base.BaseOnScrollListener;
 import com.wkw.hot.entity.Popular;
+import com.wkw.hot.reject.component.AppComponent;
+import com.wkw.hot.reject.component.DaggerFragmentComponent;
+import com.wkw.hot.reject.module.FragmentModule;
 import com.wkw.hot.ui.web.WebActivity;
 import com.wkw.hot.utils.Logger;
 import com.wkw.hot.utils.ProgressLayout;
@@ -45,8 +48,12 @@ public class ItemFragment extends BaseFragment<ItemPresenter> implements ItemCon
 
 
     @Override
-    protected ItemPresenter getPresenter() {
-        return new ItemPresenter(mContext, this);
+    protected void setupActivityComponent(AppComponent appComponent, FragmentModule fragmentModule) {
+        DaggerFragmentComponent.builder()
+                .appComponent(appComponent)
+                .fragmentModule(fragmentModule)
+                .build()
+                .inject(this);
     }
 
     @Override

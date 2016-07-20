@@ -9,12 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wkw.hot.reject.component.AppComponent;
+import com.wkw.hot.reject.module.ActivityModule;
+import com.wkw.hot.reject.module.FragmentModule;
+import com.wkw.hot.ui.App;
+
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 
 /**
  * Created by wukewei on 16/5/30.
  */
-public abstract class BaseFragment<T extends IPresenter> extends Fragment {
+public abstract class BaseFragment<T extends IPresenter> extends Fragment implements IView{
+    @Inject
     protected T mPresenter;
     protected View mView;
     protected Activity mContext;
@@ -31,19 +39,20 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(getLayoutId(), container, false);
+        setupActivityComponent(App.getAppComponent(),new FragmentModule(this));
         return mView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mPresenter.attachView(this);
         ButterKnife.bind(this, view);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPresenter = getPresenter();
         initEventAndData();
     }
 
@@ -59,7 +68,13 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment {
         if (mPresenter != null) mPresenter.detachView();
     }
 
-    protected abstract T getPresenter();
+
+    /**
+     * 依赖注入的入口
+     * @param appComponent appComponent
+     */
+    protected abstract void setupActivityComponent(AppComponent appComponent, FragmentModule fragmentModule);
+
     protected abstract int getLayoutId();
     protected abstract void initEventAndData();
 }

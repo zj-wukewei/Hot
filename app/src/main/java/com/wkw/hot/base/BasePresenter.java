@@ -2,8 +2,7 @@ package com.wkw.hot.base;
 
 import android.app.Activity;
 
-import com.wkw.hot.data.api.HotApi;
-import com.wkw.hot.data.api.HotFactory;
+import com.wkw.hot.data.DataManager;
 import com.wkw.hot.entity.exception.ErrorHanding;
 import com.wkw.hot.utils.ToastUtil;
 
@@ -13,14 +12,20 @@ import rx.subscriptions.CompositeSubscription;
 /**
  * Created by wukewei on 16/5/26.
  */
-public abstract class BasePresenter<T extends IView> implements IPresenter {
+public abstract class BasePresenter<T extends IView> implements IPresenter<T> {
 
     protected Activity mActivity;
     protected T mView;
     protected CompositeSubscription mCompositeSubscription;
+    protected DataManager dataManager;
 
-    public BasePresenter(Activity activity, T view) {
+    public BasePresenter(DataManager dataManager, Activity activity) {
+        this.dataManager = dataManager;
         this.mActivity = activity;
+    }
+
+    @Override
+    public void attachView(T view) {
         this.mView = view;
     }
 

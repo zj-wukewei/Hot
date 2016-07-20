@@ -1,23 +1,18 @@
 package com.wkw.hot.data;
 
-import android.os.Handler;
-import android.os.HandlerThread;
-
-import com.google.gson.Gson;
 import com.wkw.hot.cache.CacheLoader;
 import com.wkw.hot.cache.NetworkCache;
 import com.wkw.hot.common.Constants;
 import com.wkw.hot.data.api.HotApi;
-import com.wkw.hot.data.api.HotFactory;
 import com.wkw.hot.entity.ListPopular;
 import com.wkw.hot.entity.Popular;
-import com.wkw.hot.ui.App;
-import com.wkw.hot.utils.RxBus;
 import com.wkw.hot.utils.RxResultHelper;
 import com.wkw.hot.utils.SchedulersCompat;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import rx.Observable;
 
@@ -27,37 +22,15 @@ import rx.Observable;
  */
 public class DataManager {
 
-    private static Gson gson;
-    private static RxBus rxBus;
-    private static HotApi mHotApi;
-    private static CacheLoader cacheLoader;
+    private  HotApi mHotApi;
+    private  CacheLoader cacheLoader;
 
-    private Handler mHandler;
-    private DataManager() {}
-    public static DataManager getInstance() {
-        return DataManagerHolder.INSTANCE;
+
+    @Inject
+    public DataManager(HotApi hotApi, CacheLoader cacheLoader) {
+        this.mHotApi = hotApi;
+        this.cacheLoader = cacheLoader;
     }
-
-
-    public static class DataManagerHolder {
-        private final  static DataManager INSTANCE = new DataManager();
-    }
-
-    public void initService() {
-        gson = new Gson();
-        rxBus = RxBus.getDefault();
-        cacheLoader = CacheLoader.getInstance(App.getAppContext());
-        HandlerThread ioThread = new HandlerThread("IoThread");
-        ioThread.start();
-        mHandler = new Handler(ioThread.getLooper());
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                mHotApi = HotFactory.getHotApi();
-            }
-        });
-    }
-
 
     /***
      * 获取分类的类型

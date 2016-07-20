@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -44,4 +45,7 @@ dependencies {
     compile rootProject.ext.dependencies["gson"]
     compile rootProject.ext.dependencies["glide"]
     compile rootProject.ext.dependencies["butterknife"]
+    compile rootProject.ext.dependencies["dagger"]
+    apt rootProject.ext.dependencies["dagger-compiler"]
+    provided rootProject.ext.dependencies["glassfish"]
 }

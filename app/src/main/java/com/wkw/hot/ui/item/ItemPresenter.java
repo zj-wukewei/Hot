@@ -3,16 +3,11 @@ package com.wkw.hot.ui.item;
 import android.app.Activity;
 
 import com.wkw.hot.base.BasePresenter;
-import com.wkw.hot.cache.CacheLoader;
-import com.wkw.hot.cache.NetworkCache;
-import com.wkw.hot.common.Constants;
 import com.wkw.hot.data.DataManager;
-import com.wkw.hot.entity.ListPopular;
 import com.wkw.hot.entity.exception.ErrorHanding;
-import com.wkw.hot.utils.RxResultHelper;
-import com.wkw.hot.utils.SchedulersCompat;
 
-import rx.Observable;
+import javax.inject.Inject;
+
 import rx.Subscription;
 
 /**
@@ -32,15 +27,16 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
     }
 
 
-    public ItemPresenter(Activity activity, ItemContract.View view) {
-        super(activity, view);
+    @Inject
+    public ItemPresenter(DataManager dataManager, Activity activity ) {
+        super(dataManager, activity);
 
     }
 
     @Override
     public void getListData(String type) {
         mView.showLoading();
-        Subscription subscription = DataManager.getInstance().getPopular(pn, type)
+        Subscription subscription = dataManager.getPopular(pn, type)
                 .subscribe(populars -> {
                     mView.showContent();
                     if (isRefresh()) {
@@ -62,7 +58,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
     @Override
     public void getCacheData(String type) {
         mView.showLoading();
-        Subscription subscription  = DataManager.getInstance().getCachePopular(type)
+        Subscription subscription  = dataManager.getCachePopular(type)
                 .subscribe(populars -> {
                     mView.showContent();
                     mView.addLoadMoreData(populars);

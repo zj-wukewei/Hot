@@ -15,7 +15,7 @@ public interface MainContract {
 
     }
 
-    interface Presenter extends IPresenter {
+    interface Presenter extends IPresenter<View> {
         void getTabs();
     }
 }

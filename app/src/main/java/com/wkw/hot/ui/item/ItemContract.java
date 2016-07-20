@@ -15,7 +15,7 @@ public class ItemContract {
         void addLoadMoreData(List<Popular> data);
         void addRefreshData(List<Popular> data);
     }
-    interface Presenter extends IPresenter {
+    interface Presenter extends IPresenter<View> {
         void getListData(String type);
         void getCacheData(String type);
     }
