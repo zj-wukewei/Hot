@@ -18,7 +18,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         appContext = this;
-//        DataManager.getInstance().initService();
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
