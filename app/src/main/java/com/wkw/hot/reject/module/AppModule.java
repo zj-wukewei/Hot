@@ -52,15 +52,11 @@ public class AppModule {
         Interceptor apikey = chain -> chain.proceed(chain.request().newBuilder()
                 .addHeader("apikey", Constants.Api_Key).build());
 
-        File cacheFile = new File(App.getAppContext().getCacheDir(), "cache");
-        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
-
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(Constants.HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
                 .connectTimeout(Constants.HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
                 .addInterceptor(apikey)
                 .addInterceptor(loggingInterceptor)
-                .cache(cache)
                 .build();
 
         return okHttpClient;
