@@ -2,9 +2,9 @@ package com.wkw.hot.base;
 
 import android.app.Activity;
 
+import com.wkw.common_lib.utils.ToashUtils;
 import com.wkw.hot.data.DataManager;
 import com.wkw.hot.entity.exception.ErrorHanding;
-import com.wkw.hot.utils.ToastUtil;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -30,7 +30,7 @@ public abstract class BasePresenter<T extends IView> implements IPresenter<T> {
     }
 
     protected void handleError(Throwable throwable) {
-        ToastUtil.showShort(mActivity, ErrorHanding.handleError(throwable));
+        ToashUtils.show(mActivity, ErrorHanding.handleError(throwable));
     }
 
     protected void unSubscribe() {

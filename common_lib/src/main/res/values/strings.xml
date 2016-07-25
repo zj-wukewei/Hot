@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">common_lib</string>
+    <string name="not_network">当前无网络连接,请检查网络...</string>
+</resources>

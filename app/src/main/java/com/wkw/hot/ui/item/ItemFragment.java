@@ -15,7 +15,6 @@ import com.wkw.hot.reject.component.AppComponent;
 import com.wkw.hot.reject.component.DaggerFragmentComponent;
 import com.wkw.hot.reject.module.FragmentModule;
 import com.wkw.hot.ui.web.WebActivity;
-import com.wkw.hot.utils.Logger;
 import com.wkw.hot.utils.ProgressLayout;
 
 import java.util.List;
