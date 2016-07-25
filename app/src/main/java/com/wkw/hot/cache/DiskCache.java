@@ -37,7 +37,7 @@ public class DiskCache implements ICache{
             @Override
             public void call(Subscriber<? super T> subscriber) {
 
-                T t = (T) getDiskData1(key + NAME);
+                T t = (T) getDiskData(key + NAME);
 
                 if (subscriber.isUnsubscribed()) {
                     return;
@@ -104,7 +104,7 @@ public class DiskCache implements ICache{
     /**
      * 获取保存的数据
      */
-    private Object getDiskData1(String fileName) {
+    private Object getDiskData(String fileName) {
         File file = new File(fileDir, fileName);
 
         if (isCacheDataFailure(file)) {
@@ -149,16 +149,19 @@ public class DiskCache implements ICache{
      */
     private boolean isCacheDataFailure(File dataFile) {
         if (!dataFile.exists()) {
-            return false;
+            return true;
         }
         long existTime = System.currentTimeMillis() - dataFile.lastModified();
         boolean failure = false;
+
+        if (NetWorkUtil.getNetworkType(CacheLoader.getApplication()) == 0) {
+            return failure;
+        }
         if (NetWorkUtil.getNetworkType(CacheLoader.getApplication()) == NetWorkUtil.NETTYPE_WIFI) {
             failure = existTime > WIFI_CACHE_TIME ? true : false;
         } else {
             failure = existTime > OTHER_CACHE_TIME ? true : false;
         }
-
         return failure;
     }
 

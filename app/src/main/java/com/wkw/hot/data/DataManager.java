@@ -15,6 +15,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.Subscriber;
 
 /**
  * Created by wukewei on 16/7/12.
@@ -77,12 +78,18 @@ public class DataManager {
         NetworkCache<ListPopular> networkCache = new NetworkCache<ListPopular>() {
             @Override
             public Observable<ListPopular> get(String key, Class<ListPopular> cls) {
-                return mHotApi.getPopular(1, Constants.PAGE_SIZE, type)
-                        .compose(SchedulersCompat.applyIoSchedulers())
-                        .compose(RxResultHelper.handleResult())
+                return getPopular(1, type)
                         .flatMap(populars -> {
                             ListPopular popular = new ListPopular(populars);
-                            return Observable.just(popular);
+                            return Observable.create(new Observable.OnSubscribe<ListPopular>() {
+                                @Override
+                                public void call(Subscriber<? super ListPopular> subscriber) {
+                                    if (subscriber.isUnsubscribed())
+                                        return;
+                                    subscriber.onNext(popular);
+                                    subscriber.onCompleted();
+                                }
+                            });
                         });
             }
         };
