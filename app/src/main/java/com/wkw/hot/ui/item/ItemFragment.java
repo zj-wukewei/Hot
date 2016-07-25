@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import com.wkw.common_lib.network.Network;
 import com.wkw.common_lib.network.NetworkState;
 import com.wkw.common_lib.network.NetworkStateListener;
-import com.wkw.common_lib.utils.ToashUtils;
 import com.wkw.hot.R;
 import com.wkw.hot.base.BaseFragment;
 import com.wkw.hot.base.BaseOnScrollListener;

@@ -10,16 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.wkw.common_lib.network.Network;
-import com.wkw.common_lib.network.NetworkState;
-import com.wkw.common_lib.network.NetworkStateListener;
-import com.wkw.common_lib.utils.ToashUtils;
 import com.wkw.hot.R;
 import com.wkw.hot.adapter.FragmentAdapter;
 import com.wkw.hot.base.BaseActivity;
 import com.wkw.hot.reject.component.AppComponent;
 import com.wkw.hot.reject.component.DaggerActivityComponent;
 import com.wkw.hot.reject.module.ActivityModule;
+import com.wkw.hot.ui.AboutActivity;
 import com.wkw.hot.ui.item.ItemFragment;
 
 import java.util.List;
@@ -98,8 +95,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_about) {
+            AboutActivity.startActivity(mContext);
+//            return true;
         }
 
         return super.onOptionsItemSelected(item);

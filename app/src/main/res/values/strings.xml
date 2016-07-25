@@ -5,8 +5,32 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_about">关于</string>
     <string name="loading">正在加载...</string>
     <string name="try_again">重新加载</string>
     <string name="not_data">暂无数据</string>
     <string name="network_error">网络不可用,请检查网络设置</string>
+    <string name="app_introduce">头条&amp;Hot - 每日热门分享</string>
+    <string name="about_me">我是个毕业于三流的本科学校,还是个android小菜鸟,通过不断的学习和不断的看些大牛的源码进行成长,代码之路还很遥远还要不断的努力,希望通过自己的不断学习能早日的入android的门</string>
+    <string name="app_store">
+            "com.android.support:appcompat-v7:23.2.0"\n
+            "com.android.support:design:23.2.0"\n
+            "com.android.support:cardview-v7:23.2.0"\n
+            "com.android.support:recyclerview-v7:23.2.0"\n
+            "com.squareup.retrofit2:retrofit:2.0.2"\n
+            "com.squareup.okhttp3:logging-interceptor:3.3.0"\n
+            "io.reactivex:rxandroid:1.2.0"\n
+            "com.squareup.retrofit2:converter-gson:2.0.2"\n
+            "com.squareup.retrofit2:adapter-rxjava:2.0.2"\n
+            "com.google.code.gson:gson:2.6.2"\n
+            "com.github.bumptech.glide:glide:3.7.0"\n
+            "com.jakewharton:butterknife:7.0.1"\n
+            "com.google.dagger:dagger:2.0"\n
+            "com.google.dagger:dagger-compiler:2.0"\n
+            "org.glassfish:javax.annotation:10.0-b28"
+    </string>
+    <string name="introduce">这是一个关于微信热门头条分享的app,每天都会更新不同的热门分享\n\n数据来源于百度开放者平台的api,只要去申请
+    个apikey即可,里面有很多其它api可以供大家使用\n\n 项目采用的技术是 MVP+Rxjava+Retrofit+Dagger2来实现的,这个项目是我在学习新的技术
+        的时候来练习的一个项目,我像一个产品级的app来对待的\n\n本项目中common_lib下的有些是参考大帅的代码,这里非常的感谢大神的开源项目,让我学习到了很多\n\n
+    项目Github地址:https://github.com/zj-wukewei/Hot欢迎star</string>
 </resources>

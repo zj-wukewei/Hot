@@ -30,6 +30,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
         ButterKnife.bind(this);
         mContext = this;
         setupActivityComponent(App.getAppComponent(),new ActivityModule(this));
+        if (mPresenter != null)
         mPresenter.attachView(this);
         initEventAndData();
     }

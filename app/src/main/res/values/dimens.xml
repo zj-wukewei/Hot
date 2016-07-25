@@ -10,4 +10,7 @@
     <dimen name="progress_height">60dp</dimen>
     <dimen name="padding_top">8dp</dimen>
     <dimen name="padding_left">18dp</dimen>
+    <dimen name="about_header_height">230dp</dimen>
+    <dimen name="about_padding">12dp</dimen>
+    <dimen name="about_text_margin">8dp</dimen>
 </resources>
