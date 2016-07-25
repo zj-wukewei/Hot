@@ -6,7 +6,12 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 
+import com.wkw.common_lib.network.Network;
+import com.wkw.common_lib.network.NetworkState;
+import com.wkw.common_lib.network.NetworkStateListener;
+import com.wkw.common_lib.utils.ToashUtils;
 import com.wkw.hot.R;
 import com.wkw.hot.base.BaseFragment;
 import com.wkw.hot.base.BaseOnScrollListener;
@@ -20,6 +25,7 @@ import com.wkw.hot.utils.ProgressLayout;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by wukewei on 16/5/30.
@@ -36,13 +42,32 @@ public class ItemFragment extends BaseFragment<ItemPresenter> implements ItemCon
     ProgressLayout progressLayout;
 
     View.OnClickListener tryClick;
+    @Bind(R.id.llyt_network)
+    LinearLayout llytNetwork;
     private ItemAdapter mAdapter;
+
     public static ItemFragment newInstance(String type) {
         ItemFragment fragment = new ItemFragment();
         Bundle bundle = new Bundle();
         bundle.putString(TYPE, type);
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+
+    private NetworkChangeListener mNetworkChangeListener;
+
+    class NetworkChangeListener implements NetworkStateListener {
+
+        @Override
+        public void onNetworkStateChanged(NetworkState lastState, NetworkState newState) {
+            if (!newState.isConnected()) {
+                showNetWorkLayout();
+            } else {
+                hideNetWorkLayout();
+            }
+
+        }
     }
 
 
@@ -62,6 +87,8 @@ public class ItemFragment extends BaseFragment<ItemPresenter> implements ItemCon
 
     @Override
     protected void initEventAndData() {
+        mNetworkChangeListener = new NetworkChangeListener();
+        Network.addListener(mNetworkChangeListener);
         tryClick = v -> {
             mPresenter.replacePn();
             mPresenter.getListData(type);
@@ -99,32 +126,60 @@ public class ItemFragment extends BaseFragment<ItemPresenter> implements ItemCon
 
     @Override
     public void addRefreshData(List<Popular> data) {
-        if (swipeRefreshLayout.isRefreshing()) {
-            swipeRefreshLayout.postDelayed(() -> {
-                swipeRefreshLayout.setRefreshing(false);
-            }, 800);
-        }
+        hideRefreshLayout();
         mAdapter.addRefreshData(data);
     }
 
     @Override
     public void showLoading() {
         if (!progressLayout.isContent())
-        progressLayout.showLoading();
+            progressLayout.showLoading();
+    }
+
+    private void hideRefreshLayout() {
+        if (swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.postDelayed(() -> {
+                swipeRefreshLayout.setRefreshing(false);
+            }, 800);
+        }
     }
 
     @Override
     public void showContent() {
-       if (!progressLayout.isContent()) progressLayout.showContent();
+        if (!progressLayout.isContent()) progressLayout.showContent();
     }
 
     @Override
     public void showNotdata() {
-       progressLayout.showNotDta(tryClick);
+        progressLayout.showNotDta(tryClick);
     }
 
     @Override
     public void showError(String msg) {
+        hideRefreshLayout();
         progressLayout.showError(msg, tryClick);
+    }
+
+    @OnClick(value = R.id.img_delete)
+    public void onDelete(View view) {
+        hideNetWorkLayout();
+    }
+
+    private void showNetWorkLayout() {
+        if (llytNetwork.getVisibility() == View.GONE) {
+            llytNetwork.setVisibility(View.VISIBLE);
+        }
+    }
+    private void hideNetWorkLayout() {
+        if (llytNetwork.getVisibility() == View.VISIBLE) {
+            llytNetwork.setVisibility(View.GONE);
+        }
+    }
+
+
+    @Override
+    public void onDestroy() {
+        Network.removeListener(mNetworkChangeListener);
+        super.onDestroy();
     }
 }

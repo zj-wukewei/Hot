@@ -47,22 +47,10 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     protected FragmentAdapter mAdapter;
 
-    private NetworkChangeListener mNetworkChangeListener;
 
-    class NetworkChangeListener implements NetworkStateListener {
-
-        @Override
-        public void onNetworkStateChanged(NetworkState lastState, NetworkState newState) {
-            if (!newState.isConnected()) {
-                ToashUtils.show(mContext,  getString(R.string.not_network));
-            }
-
-        }
-    }
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent, ActivityModule activityModule) {
-
 
         DaggerActivityComponent.builder()
                 .appComponent(appComponent)
@@ -78,8 +66,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     @Override
     protected void initEventAndData() {
-        mNetworkChangeListener = new NetworkChangeListener();
-        Network.addListener(mNetworkChangeListener);
+
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -138,9 +125,5 @@ public class MainActivity extends BaseActivity<MainPresenter>
         tabLayout.setupWithViewPager(viewpager);
     }
 
-    @Override
-    protected void onDestroy() {
-        Network.removeListener(mNetworkChangeListener);
-        super.onDestroy();
-    }
+
 }

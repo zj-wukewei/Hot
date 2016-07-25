@@ -87,6 +87,7 @@ public class ProgressLayout extends RelativeLayout {
     }
 
     public void showError(String msg,OnClickListener click) {
+        if (this.isContent()) return;
         currentState = State.ERROR;
         this.hideNotDataView();
         this.hideLoadingView();

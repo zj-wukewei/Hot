@@ -31,7 +31,7 @@ public class App extends Application {
         Ext.init(this, new ExtImpl());
     }
 
-    static final class ExtImpl extends Ext {
+    public static final class ExtImpl extends Ext {
 
         @Override
         public String getCurOpenId() {

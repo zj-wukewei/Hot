@@ -1,7 +1,5 @@
 package com.wkw.hot.base;
 
-import android.view.View;
-
 /**
  * Created by wukewei on 16/6/1.
  */

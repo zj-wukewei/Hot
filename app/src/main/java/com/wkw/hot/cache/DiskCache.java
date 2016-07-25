@@ -2,7 +2,7 @@ package com.wkw.hot.cache;
 
 import android.util.Log;
 
-import com.wkw.hot.utils.NetWorkUtil;
+import com.wkw.hot.ui.App;
 
 import java.io.Closeable;
 import java.io.File;
@@ -106,14 +106,14 @@ public class DiskCache implements ICache{
      */
     private Object getDiskData(String fileName) {
         File file = new File(fileDir, fileName);
+        if (!file.exists()) {
+            return null;
+        }
 
         if (isCacheDataFailure(file)) {
             return null;
         }
 
-        if (!file.exists()) {
-            return null;
-        }
         Object o = null;
         ObjectInputStream read = null;
         try {
@@ -154,10 +154,10 @@ public class DiskCache implements ICache{
         long existTime = System.currentTimeMillis() - dataFile.lastModified();
         boolean failure = false;
 
-        if (NetWorkUtil.getNetworkType(CacheLoader.getApplication()) == 0) {
+        if (!App.ExtImpl.g().isAvailable()) {
             return failure;
         }
-        if (NetWorkUtil.getNetworkType(CacheLoader.getApplication()) == NetWorkUtil.NETTYPE_WIFI) {
+        if (App.ExtImpl.g().isWifi()) {
             failure = existTime > WIFI_CACHE_TIME ? true : false;
         } else {
             failure = existTime > OTHER_CACHE_TIME ? true : false;
