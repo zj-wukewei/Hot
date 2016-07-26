@@ -38,7 +38,7 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(getLayoutId(), container, false);
+        mView = inflater.inflate(getLayoutId(), null);
         setupActivityComponent(App.getAppComponent(),new FragmentModule(this));
         return mView;
     }
@@ -48,12 +48,13 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
         super.onViewCreated(view, savedInstanceState);
         mPresenter.attachView(this);
         ButterKnife.bind(this, view);
+        initEventAndData();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initEventAndData();
+
     }
 
     @Override
