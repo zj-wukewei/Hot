@@ -5,7 +5,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -13,7 +12,7 @@ import com.wkw.common_lib.network.Network;
 import com.wkw.common_lib.network.NetworkState;
 import com.wkw.common_lib.network.NetworkStateListener;
 import com.wkw.hot.R;
-import com.wkw.hot.base.BaseFragment;
+import com.wkw.hot.base.BaseLazyFragment;
 import com.wkw.hot.base.BaseOnScrollListener;
 import com.wkw.hot.entity.Popular;
 import com.wkw.hot.reject.component.AppComponent;
@@ -30,7 +29,7 @@ import butterknife.OnClick;
 /**
  * Created by wukewei on 16/5/30.
  */
-public class ItemFragment extends BaseFragment<ItemPresenter> implements ItemContract.View {
+public class ItemFragment extends BaseLazyFragment<ItemPresenter> implements ItemContract.View {
     public static final String TYPE = "type";
 
     protected String type;
@@ -56,6 +55,21 @@ public class ItemFragment extends BaseFragment<ItemPresenter> implements ItemCon
 
 
     private NetworkChangeListener mNetworkChangeListener;
+
+    @Override
+    protected void onFirstUserVisible() {
+        mPresenter.getCacheData(type);
+    }
+
+    @Override
+    protected void onUserVisible() {
+
+    }
+
+    @Override
+    protected void onUserInvisible() {
+
+    }
 
     class NetworkChangeListener implements NetworkStateListener {
 
@@ -112,7 +126,6 @@ public class ItemFragment extends BaseFragment<ItemPresenter> implements ItemCon
                 }
             }
         });
-        mPresenter.getCacheData(type);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             mPresenter.replacePn();
             mPresenter.getListData(type);

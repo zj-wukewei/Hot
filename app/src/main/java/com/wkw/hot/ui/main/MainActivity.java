@@ -18,7 +18,6 @@ import com.wkw.hot.reject.component.DaggerActivityComponent;
 import com.wkw.hot.reject.module.ActivityModule;
 import com.wkw.hot.ui.AboutActivity;
 import com.wkw.hot.ui.item.ItemFragment;
-import com.wkw.hot.ui.item.ItemLazyFragment;
 
 import java.util.List;
 
@@ -117,7 +116,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
     public void addTabs(List<String> tabs) {
         mAdapter = new FragmentAdapter(getSupportFragmentManager());
         for (String tab : tabs) {
-            ItemLazyFragment fragment = ItemLazyFragment.newInstance(tab);
+            ItemFragment fragment = ItemFragment.newInstance(tab);
             mAdapter.addFragment(fragment, tab);
         }
         viewpager.setAdapter(mAdapter);

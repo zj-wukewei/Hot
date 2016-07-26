@@ -6,7 +6,6 @@ import com.wkw.hot.data.DataManager;
 import com.wkw.hot.reject.PerFragment;
 import com.wkw.hot.reject.module.FragmentModule;
 import com.wkw.hot.ui.item.ItemFragment;
-import com.wkw.hot.ui.item.ItemLazyFragment;
 
 import dagger.Component;
 
@@ -22,6 +21,5 @@ public interface FragmentComponent {
     Activity getActivity();
 
     void inject(ItemFragment itemFragment);
-    void inject(ItemLazyFragment itemLazyFragment);
 
 }
