@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -12,12 +14,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.wkw.common_lib.utils.AndroidUtils;
 import com.wkw.hot.R;
 import com.wkw.hot.base.BaseActivity;
 import com.wkw.hot.base.IPresenter;
 import com.wkw.hot.reject.component.AppComponent;
 import com.wkw.hot.reject.component.DaggerActivityComponent;
 import com.wkw.hot.reject.module.ActivityModule;
+import com.wkw.hot.ui.AboutActivity;
 
 import butterknife.Bind;
 
@@ -106,6 +110,34 @@ public class WebActivity extends BaseActivity<WebPresenter> implements WebContra
                 .activityModule(activityModule)
                 .build()
                 .inject(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_web, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case  R.id.action_other_browser:
+                AndroidUtils.openBrowser(mContext, url);
+                return true;
+
+            case R.id.action_cory_url:
+                AndroidUtils.copyToClipBoard(mContext, webView.getUrl());
+                return true;
+
+            case R.id.action_share:
+                AndroidUtils.showSystemShareOption(mContext, getString(R.string.share_title), url);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
