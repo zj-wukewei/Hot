@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.wkw.common_lib.utils.AppManager;
 import com.wkw.hot.reject.component.AppComponent;
 import com.wkw.hot.reject.module.ActivityModule;
 import com.wkw.hot.ui.App;
@@ -33,6 +34,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
         if (mPresenter != null)
         mPresenter.attachView(this);
         initEventAndData();
+        AppManager.getAppManager().addActivity(this);
     }
 
     protected void setCommonBackToolBack(Toolbar toolbar, String title) {
@@ -46,6 +48,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        AppManager.getAppManager().removeActivity(this);
         ButterKnife.unbind(this);
         if (mPresenter != null) mPresenter.detachView();
     }
