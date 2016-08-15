@@ -52,6 +52,7 @@ public class AppModule {
         Interceptor apikey = chain -> chain.proceed(chain.request().newBuilder()
                 .addHeader("apikey", Constants.Api_Key).build());
 
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(Constants.HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
                 .connectTimeout(Constants.HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)

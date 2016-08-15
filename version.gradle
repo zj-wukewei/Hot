@@ -3,7 +3,7 @@ ext {
             compileSdkVersion : 23,
             buildToolsVersion : "23.0.2",
             applicationId : "com.wkw.hot",
-            minSdkVersion : 14,
+            minSdkVersion : 16,
             targetSdkVersion : 22,
             versionCode : 1,
             versionName : "1.0",
@@ -11,12 +11,12 @@ ext {
     ]
 
     dependencies = [
-            "appcompat-v7"        : "com.android.support:appcompat-v7:23.2.0",
-            "design"              : "com.android.support:design:23.2.0",
-            "cardview"            : "com.android.support:cardview-v7:23.2.0",
-            "recyclerview-v7"     : "com.android.support:recyclerview-v7:23.2.0",
+            "appcompat-v7"        : "com.android.support:appcompat-v7:23.4.0",
+            "design"              : "com.android.support:design:23.4.0",
+            "cardview"            : "com.android.support:cardview-v7:23.4.0",
+            "recyclerview-v7"     : "com.android.support:recyclerview-v7:23.4.0",
             "retrofit"            : "com.squareup.retrofit2:retrofit:2.0.2",
-            "logging-interceptor" : "com.squareup.okhttp3:logging-interceptor:3.3.0",
+            "logging-interceptor" : "com.squareup.okhttp3:logging-interceptor:3.4.1",
             "rxandroid"           : "io.reactivex:rxandroid:1.2.0",
             "converter-gson"      : "com.squareup.retrofit2:converter-gson:2.0.2",
             "adapter-rxjava"      : "com.squareup.retrofit2:adapter-rxjava:2.0.2",
@@ -26,6 +26,6 @@ ext {
             "dagger"              : "com.google.dagger:dagger:2.0",
             "dagger-compiler"     : "com.google.dagger:dagger-compiler:2.0",
             "glassfish"           : "org.glassfish:javax.annotation:10.0-b28",
-
+            "react-native"        : "com.facebook.react:react-native:+"
     ]
 }

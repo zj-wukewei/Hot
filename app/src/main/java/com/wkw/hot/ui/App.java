@@ -2,21 +2,42 @@ package com.wkw.hot.ui;
 
 import android.app.Application;
 
+import com.facebook.react.ReactApplication;
+import com.facebook.react.ReactNativeHost;
+import com.facebook.react.ReactPackage;
+import com.facebook.react.shell.MainReactPackage;
 import com.wkw.common_lib.Ext;
 import com.wkw.common_lib.network.Network;
 import com.wkw.common_lib.utils.ViewUtils;
+import com.wkw.hot.BuildConfig;
 import com.wkw.hot.reject.component.AppComponent;
 import com.wkw.hot.reject.component.DaggerAppComponent;
 import com.wkw.hot.reject.module.AppModule;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by wukewei on 16/5/26.
  */
-public class App extends Application {
+public class App extends Application implements ReactApplication{
 
     private static App appContext;
     private static AppComponent mAppComponent;
 
+    private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+        @Override
+        protected boolean getUseDeveloperSupport() {
+            return BuildConfig.DEBUG;
+        }
+
+        @Override
+        protected List<ReactPackage> getPackages() {
+            return Arrays.<ReactPackage>asList(
+                    new MainReactPackage()
+            );
+        }
+    };
     @Override
     public void onCreate() {
         super.onCreate();
@@ -29,6 +50,11 @@ public class App extends Application {
 
     private void initExtension() {
         Ext.init(this, new ExtImpl());
+    }
+
+    @Override
+    public ReactNativeHost getReactNativeHost() {
+        return mReactNativeHost;
     }
 
     public static final class ExtImpl extends Ext {

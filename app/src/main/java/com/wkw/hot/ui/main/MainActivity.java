@@ -1,5 +1,6 @@
 package com.wkw.hot.ui.main;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,7 @@ import com.wkw.hot.reject.component.DaggerActivityComponent;
 import com.wkw.hot.reject.module.ActivityModule;
 import com.wkw.hot.ui.AboutActivity;
 import com.wkw.hot.ui.item.ItemFragment;
+import com.wkw.hot.ui.react.MyReactActivity;
 
 import java.util.List;
 
@@ -109,6 +111,11 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        int id = item.getItemId();
+        if (id == R.id.nav_camera) {
+            Intent intent = new Intent(this, MyReactActivity.class);
+            startActivity(intent);
+        }
         return true;
     }
 

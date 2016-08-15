@@ -1,0 +1,24 @@
+{
+  "name": "rn-hot",
+  "version": "1.0.0",
+  "description": "react-native hot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zj-wukewei/Hot.git"
+  },
+  "author": "wukewei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zj-wukewei/Hot/issues"
+  },
+  "homepage": "https://github.com/zj-wukewei/Hot#readme",
+  "dependencies": {
+    "react": "^15.3.0",
+    "react-native": "^0.31.0"
+  }
+}

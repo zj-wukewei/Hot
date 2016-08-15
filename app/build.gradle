@@ -11,6 +11,9 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
     }
 
 
@@ -46,6 +49,7 @@ dependencies {
     compile rootProject.ext.dependencies["glide"]
     compile rootProject.ext.dependencies["butterknife"]
     compile rootProject.ext.dependencies["dagger"]
+    compile rootProject.ext.dependencies["react-native"]
     apt rootProject.ext.dependencies["dagger-compiler"]
     provided rootProject.ext.dependencies["glassfish"]
     compile project(':common_lib')
