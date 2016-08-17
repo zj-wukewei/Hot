@@ -1,4 +1,4 @@
-package com.wkw.hot.utils;
+package com.wkw.common_lib.rx;
 
 import rx.Observable;
 import rx.subjects.PublishSubject;

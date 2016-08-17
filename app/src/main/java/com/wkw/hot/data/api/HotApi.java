@@ -1,6 +1,6 @@
 package com.wkw.hot.data.api;
 
-import com.wkw.hot.entity.ApiResponse;
+import com.wkw.common_lib.rx.ApiResponse;
 import com.wkw.hot.entity.Popular;
 
 import java.util.List;

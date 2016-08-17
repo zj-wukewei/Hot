@@ -1,4 +1,4 @@
-package com.wkw.hot.utils;
+package com.wkw.common_lib.rx;
 
 
 import rx.Observable;
@@ -10,8 +10,13 @@ import rx.schedulers.Schedulers;
  */
 public class SchedulersCompat {
 
-    private final static Observable.Transformer ioTransformer = o -> ((Observable)o).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread());
+
+    private final static Observable.Transformer ioTransformer = new Observable.Transformer() {
+        @Override
+        public Object call(Object o) {
+            return ((Observable)o).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+        }
+    };
 
     public static <T> Observable.Transformer<T, T> applyIoSchedulers() {
         return (Observable.Transformer<T, T>) ioTransformer;

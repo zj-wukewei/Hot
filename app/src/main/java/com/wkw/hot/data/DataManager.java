@@ -6,8 +6,8 @@ import com.wkw.hot.common.Constants;
 import com.wkw.hot.data.api.HotApi;
 import com.wkw.hot.entity.ListPopular;
 import com.wkw.hot.entity.Popular;
-import com.wkw.hot.utils.RxResultHelper;
-import com.wkw.hot.utils.SchedulersCompat;
+import com.wkw.common_lib.rx.RxResultHelper;
+import com.wkw.common_lib.rx.SchedulersCompat;
 
 import java.util.ArrayList;
 import java.util.List;

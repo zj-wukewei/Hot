@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.wkw.common_lib.utils.ToashUtils;
 import com.wkw.hot.data.DataManager;
-import com.wkw.hot.entity.exception.ErrorHanding;
+import com.wkw.common_lib.rx.ErrorHanding;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;

@@ -2,9 +2,12 @@ package com.wkw.hot.ui.item;
 
 import android.app.Activity;
 
+import com.wkw.common_lib.rx.RxSubscriber;
 import com.wkw.hot.base.BasePresenter;
 import com.wkw.hot.data.DataManager;
-import com.wkw.hot.entity.exception.ErrorHanding;
+import com.wkw.hot.entity.Popular;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -15,7 +18,6 @@ import rx.Subscription;
  */
 public class ItemPresenter extends BasePresenter<ItemContract.View> implements ItemContract.Presenter {
 
-    private static final String key = "new_list";
     protected int pn = 1;
 
     protected void replacePn() {
@@ -28,7 +30,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
 
 
     @Inject
-    public ItemPresenter(DataManager dataManager, Activity activity ) {
+    public ItemPresenter(DataManager dataManager, Activity activity) {
         super(dataManager, activity);
 
     }
@@ -37,18 +39,23 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
     public void getListData(String type) {
         mView.showLoading();
         Subscription subscription = dataManager.getPopular(pn, type)
-                .subscribe(populars -> {
-                    mView.showContent();
-                    if (isRefresh()) {
-                        if (populars.size() == 0) mView.showNotdata();
-                        mView.addRefreshData(populars);
-                    } else {
-                        mView.addLoadMoreData(populars);
+                .subscribe(new RxSubscriber<List<Popular>>() {
+                    @Override
+                    public void _noNext(List<Popular> populars) {
+                        mView.showContent();
+                        if (isRefresh()) {
+                            if (populars.size() == 0) mView.showNotdata();
+                            mView.addRefreshData(populars);
+                        } else {
+                            mView.addLoadMoreData(populars);
+                        }
                     }
-                }, throwable -> {
-                    if (isRefresh())
-                    mView.showError(ErrorHanding.handleError(throwable));
-                    handleError(throwable);
+
+                    @Override
+                    public void _onError(String msg) {
+                        if (isRefresh())
+                            mView.showError(msg);
+                    }
                 });
 
         addSubscribe(subscription);
@@ -58,13 +65,18 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
     @Override
     public void getCacheData(String type) {
         mView.showLoading();
-        Subscription subscription  = dataManager.getCachePopular(type)
-                .subscribe(populars -> {
-                    mView.showContent();
-                    mView.addLoadMoreData(populars);
-                }, throwable -> {
-                    mView.showError(ErrorHanding.handleError(throwable));
-                    handleError(throwable);
+        Subscription subscription = dataManager.getCachePopular(type)
+                .subscribe(new RxSubscriber<List<Popular>>() {
+                    @Override
+                    public void _noNext(List<Popular> populars) {
+                        mView.showContent();
+                        mView.addLoadMoreData(populars);
+                    }
+
+                    @Override
+                    public void _onError(String msg) {
+                        mView.showError(msg);
+                    }
                 });
 
         addSubscribe(subscription);

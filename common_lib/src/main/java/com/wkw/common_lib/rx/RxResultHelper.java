@@ -1,10 +1,4 @@
-package com.wkw.hot.utils;
-
-import android.util.Log;
-
-import com.wkw.hot.entity.ApiResponse;
-import com.wkw.hot.entity.exception.ServerException;
-import com.wkw.hot.ui.App;
+package com.wkw.common_lib.rx;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -38,7 +32,7 @@ public class RxResultHelper {
     }
 
 
-    public static <T> Observable<T> createData(T t) {
+    public static <T> Observable<T> createData(final T t) {
         return Observable.create(new Observable.OnSubscribe<T>() {
             @Override
             public void call(Subscriber<? super T> subscriber) {

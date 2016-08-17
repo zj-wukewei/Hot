@@ -112,7 +112,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         int id = item.getItemId();
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_sports) {
             Intent intent = new Intent(this, MyReactActivity.class);
             startActivity(intent);
         }
