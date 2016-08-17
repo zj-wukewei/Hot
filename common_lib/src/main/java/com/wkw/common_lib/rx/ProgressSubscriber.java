@@ -2,8 +2,10 @@ package com.wkw.common_lib.rx;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.util.Log;
 
+import com.wkw.common_lib.rx.error.DefaultErrorBundle;
+import com.wkw.common_lib.rx.error.ErrorBundle;
+import com.wkw.common_lib.rx.error.ErrorHanding;
 import com.wkw.common_lib.utils.DialogUtil;
 
 import rx.Subscriber;
@@ -17,7 +19,6 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> {
 
     public ProgressSubscriber(Context context, String message) {
         mProgressDialog = DialogUtil.getWaitDialog(context, message);
-        Log.d("ProgressSubscriber","ProgressSubscriber");
     }
 
     @Override
@@ -38,7 +39,7 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
-        _onError(ErrorHanding.handleError(e));
+        _onError(ErrorHanding.handleError(new DefaultErrorBundle((Exception) e)));
     }
 
 

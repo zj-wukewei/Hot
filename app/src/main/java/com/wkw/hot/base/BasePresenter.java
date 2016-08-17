@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.wkw.common_lib.utils.ToashUtils;
 import com.wkw.hot.data.DataManager;
-import com.wkw.common_lib.rx.ErrorHanding;
+import com.wkw.common_lib.rx.error.ErrorHanding;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -29,9 +29,7 @@ public abstract class BasePresenter<T extends IView> implements IPresenter<T> {
         this.mView = view;
     }
 
-    protected void handleError(Throwable throwable) {
-        ToashUtils.show(mActivity, ErrorHanding.handleError(throwable));
-    }
+
 
     protected void unSubscribe() {
         if (mCompositeSubscription != null) {

@@ -1,4 +1,4 @@
-package com.wkw.common_lib.rx;
+package com.wkw.common_lib.rx.error;
 
 import com.wkw.common_lib.Ext;
 
@@ -13,8 +13,8 @@ public class ErrorHanding {
     public ErrorHanding() {
     }
 
-    public static String handleError(Throwable e) {
-        e.printStackTrace();
+    public static String handleError(ErrorBundle e) {
+        e.getException().printStackTrace();
         String message;
         if (!Ext.g().isAvailable()) {
             message = "网络中断，请检查您的网络状态";
@@ -22,8 +22,12 @@ public class ErrorHanding {
             message = "网络中断，请检查您的网络状态";
         } else if (e instanceof ConnectException) {
             message = "网络中断，请检查您的网络状态";
+        } else if (e instanceof NetworkConnectionException) {
+            message = "网络中断，请检查您的网络状态";
         } else if (e instanceof ServerException) {
-            message = e.getMessage();
+            int code  = ((ServerException) e).getCode();
+            //在这里你可以获取code来判断是什么类型  好比有些token失效了你就可以实现跳转到登录页面
+            message = e.getErrorMessage();
         } else {
             message = "连接服务器失败,请稍后再试";
         }

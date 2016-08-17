@@ -1,5 +1,8 @@
 package com.wkw.common_lib.rx;
 
+import com.wkw.common_lib.rx.error.DefaultErrorBundle;
+import com.wkw.common_lib.rx.error.ErrorHanding;
+
 import rx.Subscriber;
 
 /**
@@ -20,7 +23,7 @@ public abstract class RxSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
-        _onError(ErrorHanding.handleError(e));
+        _onError(ErrorHanding.handleError(new DefaultErrorBundle((Exception) e)));
     }
 
     public abstract void _noNext(T t);

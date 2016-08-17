@@ -1,5 +1,8 @@
 package com.wkw.common_lib.rx;
 
+import com.wkw.common_lib.rx.error.NetworkConnectionException;
+import com.wkw.common_lib.rx.error.ServerException;
+
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
@@ -18,11 +21,11 @@ public class RxResultHelper {
                             @Override
                             public Observable<T> call(ApiResponse<T> tApiResponse) {
                                 if (tApiResponse == null) {
-                                    return Observable.empty();
+                                    return Observable.error(new NetworkConnectionException());
                                 } else if (tApiResponse.isSuccess()) {
                                     return createData(tApiResponse.getNewsList());
                                 } else {
-                                    return Observable.error(new ServerException(tApiResponse.getMsg()));
+                                    return Observable.error(new ServerException(tApiResponse.getCode(),tApiResponse.getMsg()));
                                 }
                             }
                         }
