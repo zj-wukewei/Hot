@@ -26,6 +26,7 @@ ext {
             "dagger"              : "com.google.dagger:dagger:2.0",
             "dagger-compiler"     : "com.google.dagger:dagger-compiler:2.0",
             "glassfish"           : "org.glassfish:javax.annotation:10.0-b28",
-            "react-native"        : "com.facebook.react:react-native:+"
+            "react-native"        : "com.facebook.react:react-native:+",
+            "react-native-preloader" : "com.github.moduth:react-native-preloader:0.31.0"
     ]
 }

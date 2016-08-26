@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.wkw.common_lib.rx.error.DefaultErrorBundle;
-import com.wkw.common_lib.rx.error.ErrorBundle;
 import com.wkw.common_lib.rx.error.ErrorHanding;
 import com.wkw.common_lib.utils.DialogUtil;
 

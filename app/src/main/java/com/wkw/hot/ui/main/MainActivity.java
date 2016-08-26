@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.github.markzhai.react.preloader.ReactPreLoader;
 import com.wkw.hot.R;
 import com.wkw.hot.adapter.FragmentAdapter;
 import com.wkw.hot.base.BaseActivity;
@@ -73,6 +74,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
         toggle.syncState();
         mPresenter.getTabs();
         navView.setNavigationItemSelectedListener(this);
+        ReactPreLoader.init(this, MyReactActivity.reactInfo);
     }
 
     @Override

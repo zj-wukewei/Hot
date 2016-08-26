@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,14 @@
   },
   "homepage": "https://github.com/zj-wukewei/Hot#readme",
   "dependencies": {
-    "react": "^15.3.0",
-    "react-native": "^0.31.0"
+    "fetch-http-client": "0.0.7",
+    "react": "^15.2.1",
+    "react-native": "^0.31.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0"
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.3.1"
   }
 }

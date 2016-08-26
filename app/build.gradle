@@ -46,6 +46,7 @@ dependencies {
     compile rootProject.ext.dependencies["converter-gson"]
     compile rootProject.ext.dependencies["adapter-rxjava"]
     compile rootProject.ext.dependencies["gson"]
+    compile rootProject.ext.dependencies["react-native-preloader"]
     compile rootProject.ext.dependencies["glide"]
     compile rootProject.ext.dependencies["butterknife"]
     compile rootProject.ext.dependencies["dagger"]
