@@ -2,7 +2,6 @@ import React, {
   Component
 } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   RefreshControl,
@@ -15,6 +14,7 @@ import {
 } from 'react-native';
 import Header from '../components/Header.js';
 import LoadingView from "../components/LoadingView.js";
+import WebViewContaines from "../containes/WebViewContaines.js";
 import {
   toastShort
 } from "../utils/ToastUtil.js";
@@ -27,6 +27,7 @@ class News extends Component {
     this.renderContent = this.renderContent.bind(this);
     this.renderItem = this.renderItem.bind(this);
     this.renderFooter = this.renderFooter.bind(this);
+    this.onPress = this.onPress.bind(this);
     this.state = {
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
@@ -58,7 +59,7 @@ class News extends Component {
 
   renderItem(news) {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => this.onPress(news.title, news.url)}>
         <View style={styles.containerItem}>
           <Image style= {styles.image} source={{ uri: news.picUrl }}/>
           <View style={{ flex: 1, flexDirection: 'column' }} >
@@ -73,6 +74,17 @@ class News extends Component {
       </TouchableOpacity>
     )
   }
+
+ onPress(title,url) {
+   const { navigator } = this.props;
+    navigator.push({
+      component: WebViewContaines,
+      name: 'WebViewContaines',
+      url: url,
+      title: title
+    });
+ }
+
   renderFooter() {
     const {
       news
