@@ -44,7 +44,6 @@ class News extends Component {
   }
 
   onEndReached() {
-    toastShort("aaa");
     let time = Date.parse(new Date()) / 1000;
     if (time - loadMoreTime > 1) {
       const {

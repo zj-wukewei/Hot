@@ -16,9 +16,9 @@ class WebContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const {home} = state;
+  const {news} = state;
   return {
-    home
+    news
   }
 }
 
