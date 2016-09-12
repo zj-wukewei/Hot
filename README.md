@@ -11,6 +11,7 @@ this is a hot project
 >* 6月25日 加入了缓存功能。
 >* 7月11日 加入Datamanager来统一管理数据来源
 >* 7月20日 加入Dagger2
+>* 9月12日 完成了用react-native实现的体育新闻列表
 
 ##  Welcome
 >* Star
