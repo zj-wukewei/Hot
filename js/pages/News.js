@@ -59,17 +59,17 @@ class News extends Component {
   renderItem(news) {
     return (
       <TouchableOpacity>
-         <View style={styles.containerItem}>
-            <Image style= {styles.image} source={{ uri: news.picUrl }}/>
-            <View style={{ flex: 1, flexDirection: 'column' }} >
-               <Text style={styles.title}>
-                  {news.title}
-               </Text>
-                <Text >
-                  来自: {news.description}
-               </Text>
-            </View>
-         </View>
+        <View style={styles.containerItem}>
+          <Image style= {styles.image} source={{ uri: news.picUrl }}/>
+          <View style={{ flex: 1, flexDirection: 'column' }} >
+            <Text style={styles.title}>
+              {news.title}
+            </Text>
+            <Text >
+              来自: {news.description}
+            </Text>
+          </View>
+        </View>
       </TouchableOpacity>
     )
   }
@@ -102,79 +102,79 @@ class News extends Component {
       return <LoadingView />
     }
 
-    return ( < ListView initialListSize = {1}
-      dataSource = {this.state.dataSource.cloneWithRows(news.newsList)}
-      renderRow = {this.renderItem}
-      onEndReachedThreshold = {10}
-      style = {styles.listView}
-      onEndReached = {this.onEndReached.bind(this)}
-      onEndReachedThreshold = {10}
-      renderFooter = {this.renderFooter}
-      refreshControl = {
-        <RefreshControl
-              style={{ backgroundColor: 'transparent' }}
-              refreshing={news.isRefresh}
-              onRefresh={this.onRefresh.bind(this)}
-              title="Loading..."
-              colors={['#ff0000', '#00ff00', '#0000ff','#3ad564']}
+    return (
+      <ListView initialListSize = {1}
+        dataSource = {this.state.dataSource.cloneWithRows(news.newsList) }
+        renderRow = {this.renderItem}
+        style = {styles.listView}
+        onEndReached = {this.onEndReached.bind(this)}
+        onEndReachedThreshold = {10}
+        renderFooter = {this.renderFooter}
+        refreshControl = {
+          <RefreshControl
+            style={{ backgroundColor: 'transparent' }}
+            refreshing={news.isRefresh}
+            onRefresh={this.onRefresh.bind(this) }
+            title="Loading..."
+            colors={['#ff0000', '#00ff00', '#0000ff', '#3ad564']}
             />
-      }
-      />)
-    }
-
-    render() {
-      const {
-        navigator,
-        news
-      } = this.props;
-      return (
-        <View style={styles.container}>
-      <Header title="体育" navigator= {navigator}/>
-      {this.renderContent()}
-      </View>
-
-      )
-    }
-
+        }
+        />)
   }
 
+  render() {
+    const {
+      navigator,
+      news
+    } = this.props;
+    return (
+      <View style={styles.container}>
+        <Header title="体育" navigator= {navigator}/>
+        {this.renderContent() }
+      </View>
+
+    )
+  }
+
+}
 
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#F5FCFF',
-    },
-    containerItem: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#fcfcfc',
-      padding: 10,
-      borderBottomColor: '#ddd',
-    },
-    image: {
-      width: 88,
-      height: 66,
-      marginRight: 10
-    },
-    title: {
-      fontSize: 18,
-      textAlign: 'left',
-      color: 'black'
-    },
-    footerContainer: {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 5
-    },
-    footerText: {
-      textAlign: 'center',
-      fontSize: 16,
-      marginLeft: 10
-    }
-  });
 
-  export default News;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  containerItem: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fcfcfc',
+    padding: 10,
+    borderBottomColor: '#ddd',
+  },
+  image: {
+    width: 88,
+    height: 66,
+    marginRight: 10
+  },
+  title: {
+    fontSize: 18,
+    textAlign: 'left',
+    color: 'black'
+  },
+  footerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5
+  },
+  footerText: {
+    textAlign: 'center',
+    fontSize: 16,
+    marginLeft: 10
+  }
+});
+
+export default News;
