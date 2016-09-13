@@ -41,21 +41,15 @@ class App extends React.Component {
 	}
 
 	render() {
-		return ( < Navigator style = {
-				styles.navigator
-			}
-			configureScene = {
-				this.configureScene
-			}
-			renderScene = {
-				this.renderScene
-			}
-			initialRoute = {
-				{
+		return ( 
+			<Navigator 
+			  style={styles.navigator}
+			  configureScene={this.configureScene}
+		      renderScene={this.renderScene}
+			  initialRoute = {{
 					component: NewsContainer,
 					name: 'NewsContainer'
-				}
-			}
+				}}
 			/>
 		);
 	}
