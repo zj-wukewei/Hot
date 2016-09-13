@@ -34,7 +34,7 @@ const Header = ({
 	const handleIconClicked = () => {
 		if (onIconClicked) {
 			onIconClicked();
-		} else if (navigaßtor) {
+		} else if (navigator) {
 			naviGoBack(navigator);
 		}
 	};
