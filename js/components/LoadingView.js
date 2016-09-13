@@ -9,10 +9,12 @@ import {
 } from 'react-native';
 class LoadingView extends Component {
 	render() {
-		return (<View style={styles.containers}>
-                     	<ActivityIndicator size='large' color='#FF4081' />
-                     	<Text style={ styles.text }>数据加载中...</Text>
-				</View>)
+		return (
+			<View style={styles.containers}>
+				<ActivityIndicator size='large' color='#FF4081' />
+				<Text style={ styles.text }>数据加载中...</Text>
+			</View>
+		)
 
 
 	}

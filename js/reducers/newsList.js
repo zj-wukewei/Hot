@@ -9,7 +9,6 @@ const initialState = {
 
 export default function revicesNewsList(state = initialState, action) {
 	switch (action.type) {
-
 		case types.FE_NEWLIST:
 			return Object.assign({}, state, {
 				loading: action.loading,
@@ -24,7 +23,6 @@ export default function revicesNewsList(state = initialState, action) {
 				isLoadMore: false,
 				newsList: state.isLoadMore ? state.newsList.concat(action.newsList) : action.newsList,
 			});
-
 		default:
 			return state;
 	}

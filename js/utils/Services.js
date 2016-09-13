@@ -12,11 +12,11 @@ let client = new FetchHttpClient(HOST);
 export function getNewList(url, pnSize) {
 
 	return getClient().get(url, {
-			query: {
-				num: 10,
-				pn: pnSize
-			},
-		}).then(filterJSON)
+		query: {
+			num: 10,
+			pn: pnSize
+		},
+	}).then(filterJSON)
 		.then(filterStatus)
 		.catch((error) => {
 			toastShort('网络发生错误,请重试!')

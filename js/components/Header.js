@@ -34,21 +34,21 @@ const Header = ({
 	const handleIconClicked = () => {
 		if (onIconClicked) {
 			onIconClicked();
-		} else if (navigator) {
+		} else if (navigaßtor) {
 			naviGoBack(navigator);
 		}
 	};
 
 	const renderToolbarAndroid = () => (
 		<ToolbarAndroid
-      style={styles.toolbar}
-      actions={actions}
-      onActionSelected={onActionSelected}
-      onIconClicked={handleIconClicked}
-      navIcon={navIcon === undefined ? iconLeft : navIcon}
-      titleColor="#fff"
-      title={title}
-    />
+			style={styles.toolbar}
+			actions={actions}
+			onActionSelected={onActionSelected}
+			onIconClicked={handleIconClicked}
+			navIcon={navIcon === undefined ? iconLeft : navIcon}
+			titleColor="#fff"
+			title={title}
+			/>
 	);
 
 
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 Header.propTypes = propTypes;
 
 Header.defaultProps = {
-	onActionSelected() {},
+	onActionSelected() { },
 	title: '',
 	actions: []
 };

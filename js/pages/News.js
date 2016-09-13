@@ -58,7 +58,7 @@ class News extends Component {
 
   renderItem(news) {
     return (
-      <TouchableOpacity onPress={() => this.onPress(news.title, news.url)}>
+      <TouchableOpacity onPress={() => this.onPress(news.title, news.url) }>
         <View style={styles.containerItem}>
           <Image style= {styles.image} source={{ uri: news.picUrl }}/>
           <View style={{ flex: 1, flexDirection: 'column' }} >
@@ -74,15 +74,15 @@ class News extends Component {
     )
   }
 
- onPress(title,url) {
-   const { navigator } = this.props;
+  onPress(title, url) {
+    const { navigator } = this.props;
     navigator.push({
       component: WebViewContaines,
       name: 'WebViewContaines',
       url: url,
       title: title
     });
- }
+  }
 
   renderFooter() {
     const {
@@ -118,7 +118,7 @@ class News extends Component {
         dataSource = {this.state.dataSource.cloneWithRows(news.newsList) }
         renderRow = {this.renderItem}
         style = {styles.listView}
-        onEndReached = {this.onEndReached.bind(this)}
+        onEndReached = {this.onEndReached.bind(this) }
         onEndReachedThreshold = {10}
         renderFooter = {this.renderFooter}
         refreshControl = {
