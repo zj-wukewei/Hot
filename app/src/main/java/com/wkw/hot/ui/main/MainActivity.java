@@ -155,8 +155,9 @@ public class MainActivity extends BaseActivity<MainPresenter>
         drawer.closeDrawer(GravityCompat.START);
         int id = item.getItemId();
         if (id == R.id.nav_sports) {
-            Intent intent = new Intent(this, MyReactActivity.class);
-            startActivity(intent);
+            navigator.navigateToMyReact(mContext);
+        } else if (id == R.id.nav_about) {
+            navigator.navigateToAbout(mContext);
         }
         return true;
     }

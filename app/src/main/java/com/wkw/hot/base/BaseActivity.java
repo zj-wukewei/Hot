@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.wkw.common_lib.utils.AppManager;
+import com.wkw.hot.navigator.Navigator;
 import com.wkw.hot.reject.component.AppComponent;
 import com.wkw.hot.reject.module.ActivityModule;
 import com.wkw.hot.ui.App;
@@ -23,7 +24,8 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
     @Inject
     protected T mPresenter;
     protected Activity mContext;
-
+    @Inject
+    protected Navigator navigator;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

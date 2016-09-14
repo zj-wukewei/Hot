@@ -4,6 +4,7 @@ import com.wkw.hot.cache.CacheLoader;
 import com.wkw.hot.common.Constants;
 import com.wkw.hot.data.DataManager;
 import com.wkw.hot.data.api.HotApi;
+import com.wkw.hot.navigator.Navigator;
 import com.wkw.hot.reject.ContextLife;
 import com.wkw.hot.ui.App;
 
@@ -75,6 +76,12 @@ public class AppModule {
         HotApi hotApi = retrofit1.create(HotApi.class);
 
         return hotApi;
+    }
+
+    @Provides
+    @Singleton
+    Navigator provideNavigator(Navigator navigator) {
+        return navigator;
     }
 
     @Provides
