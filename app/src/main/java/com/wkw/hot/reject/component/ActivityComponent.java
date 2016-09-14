@@ -6,6 +6,7 @@ import com.wkw.hot.data.DataManager;
 import com.wkw.hot.reject.PerActivity;
 import com.wkw.hot.reject.module.ActivityModule;
 import com.wkw.hot.ui.main.MainActivity;
+import com.wkw.hot.ui.search.SearchActivity;
 import com.wkw.hot.ui.web.WebActivity;
 
 import dagger.Component;

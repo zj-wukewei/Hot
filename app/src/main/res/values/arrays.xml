@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="query_suggestions">
+        <item>科技</item>
+        <item>美女</item>
+        <item>生活</item>
+        <item>娱乐</item>
+        <item>搞笑</item>
+        <item>宅男</item>
+    </string-array>
+</resources>

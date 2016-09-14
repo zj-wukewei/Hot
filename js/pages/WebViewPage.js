@@ -15,6 +15,7 @@ class WebViewPage extends Component {
             navigator,
             route
         } = this.props;
+        console.log(route);
         return (
             <View style={styles.container}>
                 <Header title={route.title} navigator={navigator}></Header>

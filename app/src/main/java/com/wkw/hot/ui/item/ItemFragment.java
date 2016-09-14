@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -19,6 +20,7 @@ import com.wkw.hot.reject.component.AppComponent;
 import com.wkw.hot.reject.component.DaggerFragmentComponent;
 import com.wkw.hot.reject.module.FragmentModule;
 import com.wkw.hot.ui.web.WebActivity;
+import com.wkw.hot.utils.Logger;
 import com.wkw.hot.utils.ProgressLayout;
 
 import java.util.List;
@@ -58,7 +60,9 @@ public class ItemFragment extends BaseLazyFragment<ItemPresenter> implements Ite
 
     @Override
     protected void onFirstUserVisible() {
+        Log.d("onFirstUserVisible","onFirstUserVisible"+type);
         mPresenter.getCacheData(type);
+
     }
 
     @Override

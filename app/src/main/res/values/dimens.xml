@@ -13,4 +13,5 @@
     <dimen name="about_header_height">230dp</dimen>
     <dimen name="about_padding">12dp</dimen>
     <dimen name="about_text_margin">8dp</dimen>
+    <dimen name="app_bar_default_elevation">0dp</dimen>
 </resources>

@@ -10,7 +10,7 @@ public class Logger {
     public static boolean isDebug = true;
     public static final String TAG = "HOT_TAG";
 
-    public static void e(String msg) {
+    public static void d(String msg) {
         if (isDebug)
             Log.d(TAG, msg);
 
