@@ -60,7 +60,6 @@ public class ItemFragment extends BaseLazyFragment<ItemPresenter> implements Ite
 
     @Override
     protected void onFirstUserVisible() {
-        Log.d("onFirstUserVisible","onFirstUserVisible"+type);
         mPresenter.getCacheData(type);
 
     }
