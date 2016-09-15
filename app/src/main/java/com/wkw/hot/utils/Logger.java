@@ -25,4 +25,13 @@ public class Logger {
         if (isDebug)
             Log.e(TAG, msg);
     }
+
+    public static void w(String msg) {
+        if (isDebug)
+            Log.w(TAG, msg);
+    }
+    public static void v(String msg) {
+        if (isDebug)
+            Log.v(TAG, msg);
+    }
 }
