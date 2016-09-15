@@ -12,7 +12,7 @@ this is a hot project
 >* 7月11日 加入Datamanager来统一管理数据来源
 >* 7月20日 加入Dagger2
 >* 9月12日 完成了用react-native实现的体育新闻列表
->* 9月13日 加入materialsearchview库完成搜索功能
+>* 9月13日 加入materialsearchview库完成搜索功能，关于界面的入口改变
 
 ##  Welcome
 >* Star
