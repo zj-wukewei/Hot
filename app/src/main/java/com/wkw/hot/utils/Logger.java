@@ -20,4 +20,9 @@ public class Logger {
         if (isDebug)
             Log.i(TAG, msg);
     }
+
+    public static void e(String msg) {
+        if (isDebug)
+            Log.e(TAG, msg);
+    }
 }
