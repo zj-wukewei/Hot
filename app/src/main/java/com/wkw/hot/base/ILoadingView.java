@@ -6,6 +6,6 @@ package com.wkw.hot.base;
 public interface ILoadingView extends IView {
     void showLoading();
     void showContent();
-    void showNotdata();
+    void showNotData();
     void showError(String msg);
 }

@@ -44,7 +44,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
                     public void _noNext(List<Popular> populars) {
                         mView.showContent();
                         if (isRefresh()) {
-                            if (populars.size() == 0) mView.showNotdata();
+                            if (populars.size() == 0) mView.showNotData();
                             mView.addRefreshData(populars);
                         } else {
                             mView.addLoadMoreData(populars);

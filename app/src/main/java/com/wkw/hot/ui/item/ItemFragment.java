@@ -167,8 +167,8 @@ public class ItemFragment extends BaseLazyFragment<ItemPresenter> implements Ite
     }
 
     @Override
-    public void showNotdata() {
-        progressLayout.showNotDta(tryClick);
+    public void showNotData() {
+        progressLayout.showNotData(tryClick);
     }
 
     @Override

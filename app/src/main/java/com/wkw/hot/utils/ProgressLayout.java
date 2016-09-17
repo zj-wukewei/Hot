@@ -98,7 +98,7 @@ public class ProgressLayout extends RelativeLayout {
 
 
 
-    public void showNotDta(OnClickListener click) {
+    public void showNotData(OnClickListener click) {
         currentState = State.NOTDATA;
         this.hideLoadingView();
         this.hideErrorView();
