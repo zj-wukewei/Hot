@@ -16,15 +16,16 @@ public class ErrorHanding {
     public static String handleError(ErrorBundle e) {
         e.getException().printStackTrace();
         String message;
+        Exception exception = e.getException();
         if (!Ext.g().isAvailable()) {
             message = "网络中断，请检查您的网络状态";
-        } else if (e instanceof SocketTimeoutException) {
+        } else if (exception instanceof SocketTimeoutException) {
             message = "网络中断，请检查您的网络状态";
-        } else if (e instanceof ConnectException) {
+        } else if (exception instanceof ConnectException) {
             message = "网络中断，请检查您的网络状态";
-        } else if (e instanceof NetworkConnectionException) {
+        } else if (exception instanceof NetworkConnectionException) {
             message = "网络中断，请检查您的网络状态";
-        } else if (e instanceof ServerException) {
+        } else if (exception instanceof ServerException) {
             int code  = ((ServerException) e).getCode();
             //在这里你可以获取code来判断是什么类型  好比有些token失效了你就可以实现跳转到登录页面
             message = e.getErrorMessage();
