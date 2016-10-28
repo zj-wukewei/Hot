@@ -38,6 +38,7 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
+        dismissProgress();
         _onError(ErrorHanding.handleError(new DefaultErrorBundle((Exception) e)));
     }
 
