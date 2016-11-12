@@ -8,6 +8,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.wkw.common_lib.Ext;
 import com.wkw.common_lib.network.Network;
+import com.wkw.common_lib.utils.ProcessUtils;
 import com.wkw.common_lib.utils.ViewUtils;
 import com.wkw.hot.BuildConfig;
 import com.wkw.hot.reject.component.AppComponent;
@@ -42,6 +43,9 @@ public class App extends Application implements ReactApplication{
     public void onCreate() {
         super.onCreate();
         appContext = this;
+        if (!ProcessUtils.isMainProcess(this)) {
+            return;
+        }
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
