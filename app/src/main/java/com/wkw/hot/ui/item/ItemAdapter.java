@@ -8,11 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.wkw.hot.R;
 import com.wkw.hot.base.BaseLoadMoreAdapter;
-import com.wkw.hot.entity.Popular;
+import com.wkw.hot.entity.PopularEntity;
+import com.wkw.hot.model.PopularModel;
 import com.wkw.hot.utils.GlideManager;
 
 import butterknife.Bind;
@@ -21,7 +20,7 @@ import butterknife.ButterKnife;
 /**
  * Created by wukewei on 16/6/1.
  */
-public class ItemAdapter extends BaseLoadMoreAdapter<Popular, ItemAdapter.ViewHolder> {
+public class ItemAdapter extends BaseLoadMoreAdapter<PopularModel, ItemAdapter.ViewHolder> {
 
 
     private OnItemClickListener listener;
@@ -31,7 +30,7 @@ public class ItemAdapter extends BaseLoadMoreAdapter<Popular, ItemAdapter.ViewHo
     }
 
     @Override
-    public void onBindItemViewHolder(ViewHolder holder,Popular data, int position) {
+    public void onBindItemViewHolder(ViewHolder holder, PopularModel data, int position) {
         GlideManager.loadListImageView(holder.imgItem.getContext(), data.getPicUrl(), holder.imgItem);
         holder.tvTitle.setText(data.getTitle());
         holder.tvDate.setText("来自:"+data.getDescription());
@@ -54,7 +53,7 @@ public class ItemAdapter extends BaseLoadMoreAdapter<Popular, ItemAdapter.ViewHo
         TextView tvDate;
         @Bind(R.id.card_view)
         CardView cardView;
-        Popular mPopular;
+        PopularModel mPopular;
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

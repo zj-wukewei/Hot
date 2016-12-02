@@ -1,16 +1,13 @@
 package com.wkw.hot.ui.item;
 
-import android.app.Activity;
-
 import com.wkw.common_lib.rx.RxSubscriber;
 import com.wkw.hot.base.BasePresenter;
 import com.wkw.hot.data.DataManager;
-import com.wkw.hot.entity.Popular;
-
+import com.wkw.hot.entity.PopularEntity;
+import com.wkw.hot.mapper.PopularModelDataMapper;
+import com.wkw.hot.model.PopularModel;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import rx.Subscription;
 
 /**
@@ -19,6 +16,8 @@ import rx.Subscription;
 public class ItemPresenter extends BasePresenter<ItemContract.View> implements ItemContract.Presenter {
 
     protected int pn = 1;
+    private final DataManager mDataManager;
+    private final PopularModelDataMapper mPopularModelDataMapper;
 
     protected void replacePn() {
         pn = 1;
@@ -28,20 +27,20 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
         return pn == 1;
     }
 
-
     @Inject
-    public ItemPresenter(DataManager dataManager, Activity activity) {
-        super(dataManager, activity);
-
+    public ItemPresenter(DataManager dataManager, PopularModelDataMapper popularModelDataMapper) {
+        mDataManager = dataManager;
+        mPopularModelDataMapper = popularModelDataMapper;
     }
 
     @Override
     public void getListData(String type) {
         mView.showLoading();
-        Subscription subscription = dataManager.getPopular(pn, type)
-                .subscribe(new RxSubscriber<List<Popular>>() {
+        Subscription subscription = mDataManager.getPopular(pn, type)
+            .map(popularEntityList -> mPopularModelDataMapper.transform(popularEntityList))
+            .subscribe(new RxSubscriber<List<PopularModel>>() {
                     @Override
-                    public void _noNext(List<Popular> populars) {
+                    public void _noNext(List<PopularModel> populars) {
                         mView.showContent();
                         if (isRefresh()) {
                             if (populars.size() == 0) mView.showNotData();
@@ -56,7 +55,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
                         if (isRefresh())
                             mView.showError(msg);
                     }
-                });
+            });
 
         addSubscribe(subscription);
 
@@ -65,10 +64,11 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
     @Override
     public void getCacheData(String type) {
         mView.showLoading();
-        Subscription subscription = dataManager.getCachePopular(type)
-                .subscribe(new RxSubscriber<List<Popular>>() {
+        Subscription subscription = mDataManager.getCachePopular(type)
+            .map(popularEntityList -> mPopularModelDataMapper.transform(popularEntityList))
+            .subscribe(new RxSubscriber<List<PopularModel>>() {
                     @Override
-                    public void _noNext(List<Popular> populars) {
+                    public void _noNext(List<PopularModel> populars) {
                         mView.showContent();
                         mView.addLoadMoreData(populars);
                     }
@@ -77,7 +77,7 @@ public class ItemPresenter extends BasePresenter<ItemContract.View> implements I
                     public void _onError(String msg) {
                         mView.showError(msg);
                     }
-                });
+            });
 
         addSubscribe(subscription);
     }

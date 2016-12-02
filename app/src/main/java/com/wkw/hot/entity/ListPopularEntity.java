@@ -6,10 +6,10 @@ import java.util.List;
 /**
  * Created by wukewei on 16/6/25.
  */
-public class ListPopular implements Serializable {
-    public List<Popular> data;
+public class ListPopularEntity implements Serializable {
+    public List<PopularEntity> data;
 
-    public ListPopular(List<Popular> data) {
+    public ListPopularEntity(List<PopularEntity> data) {
         this.data = data;
     }
 }

@@ -1,7 +1,7 @@
 package com.wkw.hot.data.api;
 
 import com.wkw.common_lib.rx.ApiResponse;
-import com.wkw.hot.entity.Popular;
+import com.wkw.hot.entity.PopularEntity;
 
 import java.util.List;
 
@@ -14,6 +14,6 @@ import retrofit2.http.Query;
 public interface HotApi {
 
     @GET("txapi/weixin/wxhot")
-    rx.Observable<ApiResponse<List<Popular>>> getPopular(@Query("page") int page, @Query("num") int num, @Query("word") String word);
+    rx.Observable<ApiResponse<List<PopularEntity>>> getPopular(@Query("page") int page, @Query("num") int num, @Query("word") String word);
 
 }

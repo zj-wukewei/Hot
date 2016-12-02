@@ -1,11 +1,11 @@
 package com.wkw.hot.ui.item;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -15,12 +15,12 @@ import com.wkw.common_lib.network.NetworkStateListener;
 import com.wkw.hot.R;
 import com.wkw.hot.base.BaseLazyFragment;
 import com.wkw.hot.base.BaseOnScrollListener;
-import com.wkw.hot.entity.Popular;
+import com.wkw.hot.entity.PopularEntity;
+import com.wkw.hot.model.PopularModel;
 import com.wkw.hot.reject.component.AppComponent;
 import com.wkw.hot.reject.component.DaggerFragmentComponent;
 import com.wkw.hot.reject.module.FragmentModule;
 import com.wkw.hot.ui.web.WebActivity;
-import com.wkw.hot.utils.Logger;
 import com.wkw.hot.utils.ProgressLayout;
 
 import java.util.List;
@@ -137,12 +137,12 @@ public class ItemFragment extends BaseLazyFragment<ItemPresenter> implements Ite
 
 
     @Override
-    public void addLoadMoreData(List<Popular> data) {
+    public void addLoadMoreData(List<PopularModel> data) {
         mAdapter.addLoadMoreData(data);
     }
 
     @Override
-    public void addRefreshData(List<Popular> data) {
+    public void addRefreshData(List<PopularModel> data) {
         hideRefreshLayout();
         mAdapter.addRefreshData(data);
     }
@@ -176,6 +176,12 @@ public class ItemFragment extends BaseLazyFragment<ItemPresenter> implements Ite
         hideRefreshLayout();
         progressLayout.showError(msg, tryClick);
     }
+
+
+    @Override public Context context() {
+        return getActivity().getApplication();
+    }
+
 
     @OnClick(value = R.id.img_delete)
     public void onDelete(View view) {

@@ -1,10 +1,7 @@
 package com.wkw.hot.ui.web;
 
-import android.app.Activity;
-
 import com.wkw.hot.base.BasePresenter;
 import com.wkw.hot.data.DataManager;
-
 import javax.inject.Inject;
 
 /**
@@ -14,8 +11,7 @@ public class WebPresenter extends BasePresenter<WebContract.View> implements Web
 
 
     @Inject
-    public WebPresenter(DataManager dataManager, Activity activity ) {
-        super(dataManager, activity);
+    public WebPresenter() {
 
     }
 

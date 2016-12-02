@@ -14,15 +14,8 @@ import rx.subscriptions.CompositeSubscription;
  */
 public abstract class BasePresenter<T extends IView> implements IPresenter<T> {
 
-    protected Activity mActivity;
     protected T mView;
     protected CompositeSubscription mCompositeSubscription;
-    protected DataManager dataManager;
-
-    public BasePresenter(DataManager dataManager, Activity activity) {
-        this.dataManager = dataManager;
-        this.mActivity = activity;
-    }
 
     @Override
     public void attachView(T view) {

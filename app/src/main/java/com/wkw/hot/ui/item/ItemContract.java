@@ -2,9 +2,9 @@ package com.wkw.hot.ui.item;
 
 import com.wkw.hot.base.ILoadingView;
 import com.wkw.hot.base.IPresenter;
-import com.wkw.hot.base.IView;
-import com.wkw.hot.entity.Popular;
+import com.wkw.hot.entity.PopularEntity;
 
+import com.wkw.hot.model.PopularModel;
 import java.util.List;
 
 /**
@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class ItemContract {
     interface View extends ILoadingView {
-        void addLoadMoreData(List<Popular> data);
-        void addRefreshData(List<Popular> data);
+        void addLoadMoreData(List<PopularModel> data);
+        void addRefreshData(List<PopularModel> data);
     }
     interface Presenter extends IPresenter<View> {
         void getListData(String type);

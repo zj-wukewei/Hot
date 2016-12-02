@@ -4,8 +4,8 @@ import com.wkw.hot.cache.CacheLoader;
 import com.wkw.hot.cache.NetworkCache;
 import com.wkw.hot.common.Constants;
 import com.wkw.hot.data.api.HotApi;
-import com.wkw.hot.entity.ListPopular;
-import com.wkw.hot.entity.Popular;
+import com.wkw.hot.entity.ListPopularEntity;
+import com.wkw.hot.entity.PopularEntity;
 import com.wkw.common_lib.rx.RxResultHelper;
 import com.wkw.common_lib.rx.SchedulersCompat;
 
@@ -56,13 +56,13 @@ public class DataManager {
      * @param type 类别名称
      * @return
      */
-    public Observable<List<Popular>> getPopular(int pn, String type) {
+    public Observable<List<PopularEntity>> getPopular(int pn, String type) {
         return mHotApi.getPopular(pn, Constants.PAGE_SIZE, type)
                 .compose(SchedulersCompat.applyIoSchedulers())
                 .compose(RxResultHelper.handleResult())
                 .doOnNext(populars -> {
                     if (pn == 1) {
-                        ListPopular popular = new ListPopular(populars);
+                        ListPopularEntity popular = new ListPopularEntity(populars);
                         cacheLoader.upNewData(type, popular);
                     }
                 });
@@ -74,16 +74,16 @@ public class DataManager {
      * @param
      * @return
      */
-    public Observable<List<Popular>> getCachePopular(String type) {
-        NetworkCache<ListPopular> networkCache = new NetworkCache<ListPopular>() {
+    public Observable<List<PopularEntity>> getCachePopular(String type) {
+        NetworkCache<ListPopularEntity> networkCache = new NetworkCache<ListPopularEntity>() {
             @Override
-            public Observable<ListPopular> get(String key, Class<ListPopular> cls) {
+            public Observable<ListPopularEntity> get(String key, Class<ListPopularEntity> cls) {
                 return getPopular(1, type)
                         .flatMap(populars -> {
-                            ListPopular popular = new ListPopular(populars);
-                            return Observable.create(new Observable.OnSubscribe<ListPopular>() {
+                            ListPopularEntity popular = new ListPopularEntity(populars);
+                            return Observable.create(new Observable.OnSubscribe<ListPopularEntity>() {
                                 @Override
-                                public void call(Subscriber<? super ListPopular> subscriber) {
+                                public void call(Subscriber<? super ListPopularEntity> subscriber) {
                                     if (subscriber.isUnsubscribed())
                                         return;
                                     subscriber.onNext(popular);
@@ -94,7 +94,7 @@ public class DataManager {
             }
         };
 
-        return cacheLoader.asDataObservable(Constants.NEW_LIST + type, ListPopular.class, networkCache)
+        return cacheLoader.asDataObservable(Constants.NEW_LIST + type, ListPopularEntity.class, networkCache)
                 .map(listPopular -> listPopular.data);
     }
 }

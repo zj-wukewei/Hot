@@ -1,10 +1,7 @@
 package com.wkw.hot.ui.main;
 
-import android.app.Activity;
-
 import com.wkw.hot.base.BasePresenter;
 import com.wkw.hot.data.DataManager;
-
 import javax.inject.Inject;
 
 /**
@@ -12,14 +9,15 @@ import javax.inject.Inject;
  */
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
+    private final DataManager mDataManager;
     @Inject
-    public MainPresenter(DataManager dataManager, Activity activity) {
-        super(dataManager, activity);
+    public MainPresenter(DataManager dataManager) {
+        mDataManager = dataManager;
     }
 
     @Override
     public void getTabs() {
         //类型暂时先写死
-        mView.addTabs(dataManager.getTabs());
+        mView.addTabs(mDataManager.getTabs());
     }
 }
