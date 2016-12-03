@@ -1,4 +1,4 @@
-package com.wkw.hot.utils;
+package com.wkw.common_lib.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,8 +9,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.wkw.hot.R;
-
+import com.wkw.common_lib.R;
 import java.util.ArrayList;
 import java.util.List;
 

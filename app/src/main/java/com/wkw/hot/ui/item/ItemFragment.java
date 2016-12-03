@@ -15,13 +15,12 @@ import com.wkw.common_lib.network.NetworkStateListener;
 import com.wkw.hot.R;
 import com.wkw.hot.base.BaseLazyFragment;
 import com.wkw.hot.base.BaseOnScrollListener;
-import com.wkw.hot.entity.PopularEntity;
 import com.wkw.hot.model.PopularModel;
 import com.wkw.hot.reject.component.AppComponent;
 import com.wkw.hot.reject.component.DaggerFragmentComponent;
 import com.wkw.hot.reject.module.FragmentModule;
 import com.wkw.hot.ui.web.WebActivity;
-import com.wkw.hot.utils.ProgressLayout;
+import com.wkw.common_lib.widget.ProgressLayout;
 
 import java.util.List;
 

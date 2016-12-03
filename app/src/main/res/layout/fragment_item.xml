@@ -39,7 +39,7 @@
             android:src="@drawable/delete" />
     </LinearLayout>
 
-    <com.wkw.hot.utils.ProgressLayout
+    <com.wkw.common_lib.widget.ProgressLayout
         android:id="@+id/progress_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -56,6 +56,6 @@
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
-    </com.wkw.hot.utils.ProgressLayout>
+    </com.wkw.common_lib.widget.ProgressLayout>
 
 </LinearLayout>
