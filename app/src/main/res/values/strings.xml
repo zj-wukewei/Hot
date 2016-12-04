@@ -6,9 +6,6 @@
 
     <string name="action_settings">Settings</string>
     <string name="action_about">关于</string>
-    <string name="loading">正在加载...</string>
-    <string name="try_again">重新加载</string>
-    <string name="not_data">暂无数据</string>
     <string name="github">https://github.com/zj-wukewei/Hot</string>
     <string name="network_error">网络不可用,请检查网络设置</string>
     <string name="app_introduce">头条&amp;Hot - 每日热门分享</string>

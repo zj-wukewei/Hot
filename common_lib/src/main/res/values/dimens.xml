@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="progress_width">60dp</dimen>
+    <dimen name="progress_height">60dp</dimen>
+</resources>

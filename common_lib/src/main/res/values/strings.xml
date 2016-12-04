@@ -3,4 +3,7 @@
     <string name="not_network">当前无网络连接,请检查网络...</string>
     <string name="copy_done">复制成功</string>
     <string name="open_failure">打开失败,没有找到打开该链接的其它应用</string>
+    <string name="loading">正在加载...</string>
+    <string name="try_again">重新加载</string>
+    <string name="not_data">暂无数据</string>
 </resources>
