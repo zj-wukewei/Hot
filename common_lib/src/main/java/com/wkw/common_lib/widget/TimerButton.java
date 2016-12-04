@@ -19,13 +19,14 @@ public class TimerButton extends Button {
 
     private static final long UNIT = 1000;
 
-    private Handler mHandler = new Handler(Looper.getMainLooper());
     private long mDuration;
     private String mNormalText;
     private String mTimerTextFormat;
     private Drawable mEnableBackground;
     private Drawable mDisableBackground;
-    private Runnable mTimerRunable = new Runnable() {
+
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
+    private final Runnable mTimerRunnable = new Runnable() {
         @Override public void run() {
             if (mDuration <= 0) {
                 setText(mNormalText);
@@ -34,7 +35,7 @@ public class TimerButton extends Button {
             }
             setText(String.format(mTimerTextFormat, mDuration / UNIT));
             mDuration -= UNIT;
-            mHandler.postDelayed(mTimerRunable, UNIT);
+            mHandler.postDelayed(mTimerRunnable, UNIT);
         }
     };
 
@@ -64,7 +65,7 @@ public class TimerButton extends Button {
         mNormalText = normalText;
         mDuration = duration;
         setEnabled(false);
-        mHandler.post(mTimerRunable);
+        mHandler.post(mTimerRunnable);
     }
 
     public void setDisableBackground(Drawable disableBackground) {
