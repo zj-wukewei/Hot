@@ -111,7 +111,7 @@ public class ItemFragment extends BaseLazyFragment<ItemPresenter> implements Ite
             mPresenter.getListData(type);
         };
         mAdapter = new ItemAdapter();
-        mAdapter.setOnItemCilckListener((url, title) -> {
+        mAdapter.setOnItemClickListener((url, title) -> {
             WebActivity.startActivity(mContext, url, title);
         });
         recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.wkw.common_lib.image.ImageLoader;
+import com.wkw.common_lib.image.glide.GlideImageConfig;
 import com.wkw.hot.R;
 import com.wkw.hot.base.BaseLoadMoreAdapter;
 import com.wkw.hot.entity.PopularEntity;
@@ -25,13 +27,18 @@ public class ItemAdapter extends BaseLoadMoreAdapter<PopularModel, ItemAdapter.V
 
     private OnItemClickListener listener;
 
-    public void setOnItemCilckListener(OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
     @Override
     public void onBindItemViewHolder(ViewHolder holder, PopularModel data, int position) {
-        GlideManager.loadListImageView(holder.imgItem.getContext(), data.getPicUrl(), holder.imgItem);
+        ImageLoader.getInstance().displayImage(holder.imgItem.getContext(),
+            GlideImageConfig.builder()
+                .url(data.getPicUrl())
+                .imagerView(holder.imgItem)
+                .build());
+        //GlideManager.loadListImageView(holder.imgItem.getContext(), data.getPicUrl(), holder.imgItem);
         holder.tvTitle.setText(data.getTitle());
         holder.tvDate.setText("来自:"+data.getDescription());
         holder.mPopular = data;

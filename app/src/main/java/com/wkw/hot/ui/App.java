@@ -7,6 +7,8 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.wkw.common_lib.Ext;
+import com.wkw.common_lib.image.ImageLoader;
+import com.wkw.common_lib.image.glide.GlideImageLoaderStrategy;
 import com.wkw.common_lib.network.Network;
 import com.wkw.common_lib.utils.ProcessUtils;
 import com.wkw.common_lib.utils.ViewUtils;
@@ -49,8 +51,15 @@ public class App extends Application implements ReactApplication{
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
+        initImageLoader();
         initExtension();
     }
+
+
+    private void initImageLoader() {
+        ImageLoader.getInstance().setImageLoaderStragety(new GlideImageLoaderStrategy());
+    }
+
 
     private void initExtension() {
         Ext.init(this, new ExtImpl());
