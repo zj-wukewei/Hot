@@ -5,38 +5,38 @@ package com.wkw.common_lib.rx;
  */
 public class ApiResponse<T> {
 
-    public static final int SUCCESS_CODE = 200;
+    public static final int SUCCESS_CODE = 0;
 
-    private int code;
-    private String msg;
-    private T newslist;
+    private int showapi_res_code;
+    private String showapi_res_error;
+    private T showapi_res_body;
 
-    public int getCode() {
-        return code;
+    public int getShowapi_res_code() {
+        return showapi_res_code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setShowapi_res_code(int showapi_res_code) {
+        this.showapi_res_code = showapi_res_code;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getShowapi_res_error() {
+        return showapi_res_error;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setShowapi_res_error(String showapi_res_error) {
+        this.showapi_res_error = showapi_res_error;
     }
 
     public T getNewsList() {
-        return newslist;
+        return showapi_res_body;
     }
 
     public void setNewsList(T newsList) {
-        this.newslist = newsList;
+        this.showapi_res_body = newsList;
     }
 
     public boolean isSuccess() {
-        if (this.code == SUCCESS_CODE) {
+        if (this.showapi_res_code == SUCCESS_CODE) {
             return true;
         } else {
             return false;

@@ -25,7 +25,7 @@ public class RxResultHelper {
                                 } else if (tApiResponse.isSuccess()) {
                                     return createData(tApiResponse.getNewsList());
                                 } else {
-                                    return Observable.error(new ServerException(tApiResponse.getCode(),tApiResponse.getMsg()));
+                                    return Observable.error(new ServerException(tApiResponse.getShowapi_res_code(),tApiResponse.getShowapi_res_error()));
                                 }
                             }
                         }

@@ -1923,7 +1923,7 @@ declare namespace __React {
         canvas: HTMLFactory;
         caption: HTMLFactory;
         cite: HTMLFactory;
-        code: HTMLFactory;
+        showapi_res_code: HTMLFactory;
         col: HTMLFactory;
         colgroup: HTMLFactory;
         data: HTMLFactory;
@@ -2155,7 +2155,7 @@ declare namespace JSX {
         canvas: React.HTMLProps<HTMLCanvasElement>;
         caption: React.HTMLProps<HTMLElement>;
         cite: React.HTMLProps<HTMLElement>;
-        code: React.HTMLProps<HTMLElement>;
+        showapi_res_code: React.HTMLProps<HTMLElement>;
         col: React.HTMLProps<HTMLTableColElement>;
         colgroup: React.HTMLProps<HTMLTableColElement>;
         data: React.HTMLProps<HTMLElement>;

@@ -26,7 +26,7 @@
             "io.reactivex:rxandroid:1.2.0"\n
             "com.squareup.retrofit2:converter-gson:2.0.2"\n
             "com.squareup.retrofit2:adapter-rxjava:2.0.2"\n
-            "com.google.code.gson:gson:2.6.2"\n
+            "com.google.showapi_res_code.gson:gson:2.6.2"\n
             "com.github.bumptech.glide:glide:3.7.0"\n
             "com.jakewharton:butterknife:7.0.1"\n
             "com.google.dagger:dagger:2.0"\n

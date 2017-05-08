@@ -980,7 +980,7 @@ declare namespace  __React {
     }
 
     /**
-     * //FIXME: No documentation extracted from code comment on WebView.ios.js
+     * //FIXME: No documentation extracted from showapi_res_code comment on WebView.ios.js
      */
     export interface NavState {
 
@@ -2303,7 +2303,7 @@ declare namespace  __React {
     }
 
     /**
-     * //FIXME: Could not find docs. Inferred from examples and js code: ListViewDataSource.js
+     * //FIXME: Could not find docs. Inferred from examples and js showapi_res_code: ListViewDataSource.js
      */
     export interface ListViewDataSource {
         new( onAsset: DataSourceAssetCallback ): ListViewDataSource;
@@ -2616,7 +2616,7 @@ declare namespace  __React {
 
         /**
          * This controls how often the scroll event will be fired while scrolling (in events per seconds).
-         * A higher number yields better accuracy for code that is tracking the scroll position,
+         * A higher number yields better accuracy for showapi_res_code that is tracking the scroll position,
          * but can lead to scroll performance problems due to the volume of information being send over the bridge.
          * The default value is zero, which means the scroll event will be sent only once each time the view is scrolled.
          */

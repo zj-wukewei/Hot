@@ -28,13 +28,13 @@ public class PopularEntity implements Serializable{
      * url : http://mp.weixin.qq.com/s?__biz=MjM5MTE1ODI2MA==&idx=2&mid=2651787931&sn=009a0d9df1accebef2adba14cc61ac9d
      */
 
-    @SerializedName("ctime")
+    @SerializedName("date")
     private String ctime;
     @SerializedName("title")
     private String title;
-    @SerializedName("description")
+    @SerializedName("userName")
     private String description;
-    @SerializedName("picUrl")
+    @SerializedName("contentImg")
     private String picUrl;
     @SerializedName("url")
     private String url;

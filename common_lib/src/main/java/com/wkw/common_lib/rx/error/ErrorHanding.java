@@ -26,7 +26,7 @@ public class ErrorHanding {
         } else if (exception instanceof NetworkConnectionException) {
             message = "网络中断，请检查您的网络状态";
         } else if (exception instanceof ServerException) {
-            int code  = ((ServerException) e).getCode();
+            int code  = ((ServerException) exception).getCode();
             //在这里你可以获取code来判断是什么类型  好比有些token失效了你就可以实现跳转到登录页面
             message = e.getErrorMessage();
         } else {

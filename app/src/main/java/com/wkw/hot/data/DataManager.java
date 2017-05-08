@@ -5,6 +5,7 @@ import com.wkw.hot.cache.NetworkCache;
 import com.wkw.hot.common.Constants;
 import com.wkw.hot.data.api.HotApi;
 import com.wkw.hot.entity.ListPopularEntity;
+import com.wkw.hot.entity.PagePopularEntity;
 import com.wkw.hot.entity.PopularEntity;
 import com.wkw.common_lib.rx.RxResultHelper;
 import com.wkw.common_lib.rx.SchedulersCompat;
@@ -16,6 +17,7 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Func1;
 
 /**
  * Created by wukewei on 16/7/12.
@@ -57,15 +59,20 @@ public class DataManager {
      * @return
      */
     public Observable<List<PopularEntity>> getPopular(int pn, String type) {
-        return mHotApi.getPopular(pn, Constants.PAGE_SIZE, type)
+        return mHotApi.getPopular(pn, type, Constants.Showapi_appid, Constants.Api_Key)
                 .compose(SchedulersCompat.applyIoSchedulers())
                 .compose(RxResultHelper.handleResult())
                 .doOnNext(populars -> {
                     if (pn == 1) {
-                        ListPopularEntity popular = new ListPopularEntity(populars);
+                        ListPopularEntity popular = new ListPopularEntity(populars.getPagebean().getContentlist());
                         cacheLoader.upNewData(type, popular);
                     }
-                });
+                })
+            .flatMap(new Func1<PagePopularEntity, Observable<List<PopularEntity>>>() {
+                @Override public Observable<List<PopularEntity>> call(PagePopularEntity pagePopularEntity) {
+                    return Observable.just(pagePopularEntity.getPagebean().getContentlist());
+                }
+            });
     }
 
     /***
